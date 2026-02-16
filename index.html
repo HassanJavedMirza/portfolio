@@ -8,7 +8,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -40,7 +41,10 @@
             margin: 0 auto;
         }
 
-        h1, h2, h3, .sketch-font {
+        h1,
+        h2,
+        h3,
+        .sketch-font {
             font-family: 'Architects Daughter', cursive;
             font-weight: normal;
         }
@@ -61,11 +65,24 @@
             box-shadow: 4px 4px 0px var(--border);
         }
 
+        /* Sticky Navigation */
         nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 4rem;
+            padding: 1rem 0;
+            background: var(--bg);
+            border-bottom: 2px dashed transparent;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            border-bottom-color: #ddd;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .nav-logo {
@@ -90,8 +107,28 @@
             border-bottom: 2px dashed var(--accent);
         }
 
+        /* Hero Section with Profile Picture */
         .hero {
             margin-bottom: 5rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+        }
+
+        .hero-image img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            border-radius: var(--sketchy-radius);
         }
 
         .hero h1 {
@@ -113,6 +150,40 @@
             border-bottom: 3px solid var(--accent);
         }
 
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            padding: 1rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            font-size: 0.85rem;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: #f5f5f5;
+        }
+
+        /* Projects */
         .projects-grid {
             display: grid;
             gap: 2rem;
@@ -176,12 +247,16 @@
             box-shadow: 2px 2px 0px #000;
         }
 
+        /* Contact */
         .contact-list {
             list-style: none;
         }
 
         .contact-list li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .contact-list a {
@@ -204,44 +279,164 @@
             color: #777;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 1rem; }
-            nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
-            .hero h1 { font-size: 2.5rem; }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-content {
+                text-align: left;
+            }
+
+            .hero-image img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar">
         <a href="#" class="nav-logo sketch-font">Hassan Javed.</a>
         <div class="nav-links">
             <a href="#about">About</a>
+            <a href="#skills">Skills</a>
             <a href="#projects">Work</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <section class="hero">
-        <h1 class="reveal">AI Software Engineer.</h1>
-        <p>I build intelligent systems that work. Focused on scalability, AI ethics, and minimalist code.</p>
+        <div class="hero-content">
+            <h1 class="reveal">AI Software Engineer.</h1>
+            <p>I build intelligent systems that work. Focused on scalability, AI ethics, and minimalist code.</p>
+        </div>
+        <div class="hero-image">
+            <img src="me.jpeg" alt="Hassan Javed">
+        </div>
     </section>
 
     <section id="about" style="margin-bottom: 5rem;">
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title">📖 About</h2>
         <div class="sketch-box">
-            <p>Computer Science graduate specializing in AI from Barani Institute, Islamabad. I bridge the gap between complex ML models and production-ready applications. My mission: solve real-world problems with precise, efficient intelligence.</p>
+            <p>Computer Science graduate specializing in AI from Barani Institute, Islamabad. I bridge the gap between
+                complex ML models and production-ready applications. My mission: solve real-world problems with precise,
+                efficient intelligence.</p>
+        </div>
+    </section>
+
+    <section id="skills" style="margin-bottom: 5rem;">
+        <h2 class="section-title">⚡ Skills</h2>
+        <div class="sketch-box">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🐍 Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>⚙️ Backend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">RESTful API Design</span>
+                        <span class="skill-tag">API Integration</span>
+                        <span class="skill-tag">Pydantic</span>
+                        <span class="skill-tag">Uvicorn</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🤖 ML & AI</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TF-IDF</span>
+                        <span class="skill-tag">ML Pipelines</span>
+                        <span class="skill-tag">Model Integration</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>👁️ Computer Vision</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">Roboflow</span>
+                        <span class="skill-tag">CVAT</span>
+                        <span class="skill-tag">Image Processing</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🗄️ Databases</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Relational Schema Design</span>
+                        <span class="skill-tag">Query Optimisation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🌐 Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">React Native</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔄 Automation</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">N8N</span>
+                        <span class="skill-tag">Workflow Orchestration</span>
+                        <span class="skill-tag">Groq Whisper API</span>
+                        <span class="skill-tag">Hugging Face FLUX</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🐳 DevOps</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Docker Compose</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="projects" style="margin-bottom: 5rem;">
-        <h2 class="section-title">Work</h2>
+        <h2 class="section-title">💼 Work</h2>
         <div class="projects-grid">
-            
+
             <!-- Project: Spam Email Detector -->
             <div class="sketch-box project-card">
                 <h3>Spam Email Detector</h3>
-                <p>An NLP-based classifier that identifies spam emails with high precision using Scikit-Learn and TF-IDF.</p>
+                <p>An NLP-based classifier that identifies spam emails with high precision using Scikit-Learn and
+                    TF-IDF.</p>
                 <div class="tag-list">
                     <span class="tag">Python</span>
                     <span class="tag">Scikit-learn</span>
@@ -249,15 +444,18 @@
                     <span class="tag">Streamlit</span>
                 </div>
                 <div class="links-flex">
-                    <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank" class="btn">GitHub</a>
-                    <a href="https://spam-email-detector-beta.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                    <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank"
+                        class="btn">GitHub</a>
+                    <a href="https://spam-email-detector-beta.vercel.app/" target="_blank" class="btn btn-primary">Live
+                        Demo</a>
                 </div>
             </div>
 
             <!-- Project: Cognitive AI -->
             <div class="sketch-box project-card">
-                <h3>Cognitive load assessment</h3>
-                <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability and responsible AI.</p>
+                <h3>Cognitive Load Assessment</h3>
+                <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability
+                    and responsible AI.</p>
                 <div class="tag-list">
                     <span class="tag">FastAPI</span>
                     <span class="tag">Python</span>
@@ -270,7 +468,7 @@
                 </div>
             </div>
 
-            <!-- Project: Generative AI -->
+            <!-- Project: AI Content Generator -->
             <div class="sketch-box project-card">
                 <h3>AI Content Generator</h3>
                 <p>Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy.</p>
@@ -281,8 +479,27 @@
                     <span class="tag">AI APIs</span>
                 </div>
                 <div class="links-flex">
-                    <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank" class="btn">GitHub</a>
-                    <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                    <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank"
+                        class="btn">GitHub</a>
+                    <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank"
+                        class="btn btn-primary">Live Demo</a>
+                </div>
+            </div>
+
+            <!-- Project: N8N Audio-to-Image Pipeline -->
+            <div class="sketch-box project-card">
+                <h3>Audio-to-Image Pipeline</h3>
+                <p>End-to-end generative AI workflow converting spoken audio to AI-generated images using N8N
+                    orchestration.</p>
+                <div class="tag-list">
+                    <span class="tag">N8N</span>
+                    <span class="tag">Groq API</span>
+                    <span class="tag">Hugging Face</span>
+                    <span class="tag">Automation</span>
+                </div>
+                <div class="links-flex">
+                    <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0Z42IB0M8dAHYjYd9TziWruPYHwBht4G8"
+                        target="_blank" class="btn btn-primary">View on LinkedIn</a>
                 </div>
             </div>
 
@@ -290,12 +507,14 @@
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Get in Touch</h2>
+        <h2 class="section-title">📬 Get in Touch</h2>
         <div class="sketch-box">
             <ul class="contact-list">
-                <li>Email: <a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
-                <li>LinkedIn: <a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank">hassan-javed</a></li>
-                <li>GitHub: <a href="https://github.com/HassanJavedMirza" target="_blank">HassanJavedMirza</a></li>
+                <li>📧 Email: <a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
+                <li>📱 Phone: <a href="tel:+923155077034">+92 3155077034</a></li>
+                <li>💼 LinkedIn: <a href="https://linkedin.com/in/hassan-javed-116381247"
+                        target="_blank">hassan-javed</a></li>
+                <li>🐙 GitHub: <a href="https://github.com/HassanJavedMirza" target="_blank">HassanJavedMirza</a></li>
             </ul>
         </div>
     </section>
@@ -305,6 +524,16 @@
     </footer>
 
     <script>
+        // Sticky navbar effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Simple reveal animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
