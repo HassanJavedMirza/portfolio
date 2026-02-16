@@ -36,9 +36,54 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
-            padding: 2rem;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Heat Wave Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.01) 50%, transparent 100%);
+            animation: heatWave 8s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes heatWave {
+
+            0%,
+            100% {
+                transform: translateX(-2%) skewX(0.5deg);
+            }
+
+            25% {
+                transform: translateX(2%) skewX(-0.3deg);
+            }
+
+            50% {
+                transform: translateX(-1%) skewX(0.4deg);
+            }
+
+            75% {
+                transform: translateX(1.5%) skewX(-0.2deg);
+            }
+        }
+
+        .content-wrapper {
             max-width: 900px;
             margin: 0 auto;
+            padding: 0 2rem 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         h1,
@@ -65,7 +110,7 @@
             box-shadow: 4px 4px 0px var(--border);
         }
 
-        /* Sticky Navigation */
+        /* Sticky Navigation - Full Width */
         nav {
             position: sticky;
             top: 0;
@@ -74,12 +119,12 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 4rem;
-            padding: 1rem 1.5rem;
-            margin-left: -1.5rem;
-            margin-right: -1.5rem;
+            padding: 1rem 5%;
+            width: 100%;
             background: #f8f9fa;
             border-bottom: 2px dashed transparent;
             transition: var(--transition);
+            box-sizing: border-box;
         }
 
         nav.scrolled {
@@ -398,206 +443,216 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="reveal">AI Software Engineer.</h1>
-            <p>I build intelligent systems that work. Focused on scalability, AI ethics, and minimalist code.</p>
-        </div>
-        <div class="hero-image">
-            <img src="me.jpeg" alt="Hassan Javed">
-        </div>
-    </section>
+    <div class="content-wrapper">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="reveal">AI Software Engineer.</h1>
+                <p>I build intelligent systems that work. Focused on scalability, AI ethics, and minimalist code.</p>
+            </div>
+            <div class="hero-image">
+                <img src="me.jpeg" alt="Hassan Javed">
+            </div>
+        </section>
 
-    <section id="about" style="margin-bottom: 5rem;">
-        <h2 class="section-title">📖 About</h2>
-        <div class="sketch-box">
-            <p>Computer Science graduate specializing in AI from Barani Institute, Islamabad. I bridge the gap between
-                complex ML models and production-ready applications. My mission: solve real-world problems with precise,
-                efficient intelligence.</p>
-        </div>
-    </section>
+        <section id="about" style="margin-bottom: 5rem;">
+            <h2 class="section-title">📖 About</h2>
+            <div class="sketch-box">
+                <p>Computer Science graduate specializing in AI from Barani Institute, Islamabad. I bridge the gap
+                    between
+                    complex ML models and production-ready applications. My mission: solve real-world problems with
+                    precise,
+                    efficient intelligence.</p>
+            </div>
+        </section>
 
-    <section id="skills" style="margin-bottom: 5rem;">
-        <h2 class="section-title">⚡ Skills</h2>
-        <div class="sketch-box">
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>🐍 Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">.NET</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">C++</span>
+        <section id="skills" style="margin-bottom: 5rem;">
+            <h2 class="section-title">⚡ Skills</h2>
+            <div class="sketch-box">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>🐍 Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">.NET</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C++</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>⚙️ Backend</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">RESTful API Design</span>
-                        <span class="skill-tag">API Integration</span>
-                        <span class="skill-tag">Pydantic</span>
-                        <span class="skill-tag">Uvicorn</span>
+                    <div class="skill-category">
+                        <h3>⚙️ Backend</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">RESTful API Design</span>
+                            <span class="skill-tag">API Integration</span>
+                            <span class="skill-tag">Pydantic</span>
+                            <span class="skill-tag">Uvicorn</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>🤖 ML & AI</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">TF-IDF</span>
-                        <span class="skill-tag">ML Pipelines</span>
-                        <span class="skill-tag">Model Integration</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
+                    <div class="skill-category">
+                        <h3>🤖 ML & AI</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">TF-IDF</span>
+                            <span class="skill-tag">ML Pipelines</span>
+                            <span class="skill-tag">Model Integration</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>👁️ Computer Vision</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">YOLO</span>
-                        <span class="skill-tag">Roboflow</span>
-                        <span class="skill-tag">CVAT</span>
-                        <span class="skill-tag">Image Processing</span>
+                    <div class="skill-category">
+                        <h3>👁️ Computer Vision</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">YOLO</span>
+                            <span class="skill-tag">Roboflow</span>
+                            <span class="skill-tag">CVAT</span>
+                            <span class="skill-tag">Image Processing</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>🗄️ Databases</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Relational Schema Design</span>
-                        <span class="skill-tag">Query Optimisation</span>
+                    <div class="skill-category">
+                        <h3>🗄️ Databases</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Relational Schema Design</span>
+                            <span class="skill-tag">Query Optimisation</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>🌐 Frontend</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">React Native</span>
+                    <div class="skill-category">
+                        <h3>🌐 Frontend</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">React Native</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>🔄 Automation</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">N8N</span>
-                        <span class="skill-tag">Workflow Orchestration</span>
-                        <span class="skill-tag">Groq Whisper API</span>
-                        <span class="skill-tag">Hugging Face FLUX</span>
+                    <div class="skill-category">
+                        <h3>🔄 Automation</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">N8N</span>
+                            <span class="skill-tag">Workflow Orchestration</span>
+                            <span class="skill-tag">Groq Whisper API</span>
+                            <span class="skill-tag">Hugging Face FLUX</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3>🐳 DevOps</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Docker Compose</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
+                    <div class="skill-category">
+                        <h3>🐳 DevOps</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Docker Compose</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" style="margin-bottom: 5rem;">
-        <h2 class="section-title">💼 Work</h2>
-        <div class="projects-grid">
+        <section id="projects" style="margin-bottom: 5rem;">
+            <h2 class="section-title">💼 Work</h2>
+            <div class="projects-grid">
 
-            <!-- Project: Spam Email Detector -->
-            <div class="sketch-box project-card">
-                <h3>Spam Email Detector</h3>
-                <p>An NLP-based classifier that identifies spam emails with high precision using Scikit-Learn and
-                    TF-IDF.</p>
-                <div class="tag-list">
-                    <span class="tag">Python</span>
-                    <span class="tag">Scikit-learn</span>
-                    <span class="tag">NLP</span>
-                    <span class="tag">Streamlit</span>
+                <!-- Project: Spam Email Detector -->
+                <div class="sketch-box project-card">
+                    <h3>Spam Email Detector</h3>
+                    <p>An NLP-based classifier that identifies spam emails with high precision using Scikit-Learn and
+                        TF-IDF.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <div class="links-flex">
+                        <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank"
+                            class="btn">GitHub</a>
+                        <a href="https://spam-email-detector-beta.vercel.app/" target="_blank"
+                            class="btn btn-primary">Live
+                            Demo</a>
+                    </div>
                 </div>
-                <div class="links-flex">
-                    <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank"
-                        class="btn">GitHub</a>
-                    <a href="https://spam-email-detector-beta.vercel.app/" target="_blank" class="btn btn-primary">Live
-                        Demo</a>
+
+                <!-- Project: Cognitive AI -->
+                <div class="sketch-box project-card">
+                    <h3>Cognitive Load Assessment</h3>
+                    <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for
+                        scalability
+                        and responsible AI.</p>
+                    <div class="tag-list">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                    <div class="links-flex">
+                        <a href="https://github.com/HassanJavedMirza/Cognitive_ai" target="_blank"
+                            class="btn">GitHub</a>
+                        <a href="https://cognitive-ai-rho.vercel.app/" target="_blank" class="btn btn-primary">Live
+                            Demo</a>
+                    </div>
                 </div>
+
+                <!-- Project: AI Content Generator -->
+                <div class="sketch-box project-card">
+                    <h3>AI Content Generator</h3>
+                    <p>Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy.</p>
+                    <div class="tag-list">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Clerk</span>
+                        <span class="tag">AI APIs</span>
+                    </div>
+                    <div class="links-flex">
+                        <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank"
+                            class="btn">GitHub</a>
+                        <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank"
+                            class="btn btn-primary">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project: N8N Audio-to-Image Pipeline -->
+                <div class="sketch-box project-card">
+                    <h3>Audio-to-Image Pipeline</h3>
+                    <p>End-to-end generative AI workflow converting spoken audio to AI-generated images using N8N
+                        orchestration.</p>
+                    <div class="tag-list">
+                        <span class="tag">N8N</span>
+                        <span class="tag">Groq API</span>
+                        <span class="tag">Hugging Face</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                    <div class="links-flex">
+                        <button onclick="openModal()" class="btn btn-primary">View Flow</button>
+                        <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0Z42IB0M8dAHYjYd9TziWruPYHwBht4G8"
+                            target="_blank" class="btn">View on LinkedIn</a>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <!-- Project: Cognitive AI -->
-            <div class="sketch-box project-card">
-                <h3>Cognitive Load Assessment</h3>
-                <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability
-                    and responsible AI.</p>
-                <div class="tag-list">
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">MySQL</span>
-                </div>
-                <div class="links-flex">
-                    <a href="https://github.com/HassanJavedMirza/Cognitive_ai" target="_blank" class="btn">GitHub</a>
-                    <a href="https://cognitive-ai-rho.vercel.app/" target="_blank" class="btn btn-primary">Live Demo</a>
-                </div>
+        <section id="contact">
+            <h2 class="section-title">📬 Get in Touch</h2>
+            <div class="sketch-box">
+                <ul class="contact-list">
+                    <li>📧 Email: <a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
+                    <li>📱 Phone: <a href="tel:+923155077034">+92 3155077034</a></li>
+                    <li>💼 LinkedIn: <a href="https://linkedin.com/in/hassan-javed-116381247"
+                            target="_blank">hassan-javed</a></li>
+                    <li>🐙 GitHub: <a href="https://github.com/HassanJavedMirza" target="_blank">HassanJavedMirza</a>
+                    </li>
+                </ul>
             </div>
+        </section>
 
-            <!-- Project: AI Content Generator -->
-            <div class="sketch-box project-card">
-                <h3>AI Content Generator</h3>
-                <p>Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy.</p>
-                <div class="tag-list">
-                    <span class="tag">Next.js</span>
-                    <span class="tag">React</span>
-                    <span class="tag">Clerk</span>
-                    <span class="tag">AI APIs</span>
-                </div>
-                <div class="links-flex">
-                    <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank"
-                        class="btn">GitHub</a>
-                    <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank"
-                        class="btn btn-primary">Live Demo</a>
-                </div>
-            </div>
-
-            <!-- Project: N8N Audio-to-Image Pipeline -->
-            <div class="sketch-box project-card">
-                <h3>Audio-to-Image Pipeline</h3>
-                <p>End-to-end generative AI workflow converting spoken audio to AI-generated images using N8N
-                    orchestration.</p>
-                <div class="tag-list">
-                    <span class="tag">N8N</span>
-                    <span class="tag">Groq API</span>
-                    <span class="tag">Hugging Face</span>
-                    <span class="tag">Automation</span>
-                </div>
-                <div class="links-flex">
-                    <button onclick="openModal()" class="btn btn-primary">View Flow</button>
-                    <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0Z42IB0M8dAHYjYd9TziWruPYHwBht4G8"
-                        target="_blank" class="btn">View on LinkedIn</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">📬 Get in Touch</h2>
-        <div class="sketch-box">
-            <ul class="contact-list">
-                <li>📧 Email: <a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
-                <li>📱 Phone: <a href="tel:+923155077034">+92 3155077034</a></li>
-                <li>💼 LinkedIn: <a href="https://linkedin.com/in/hassan-javed-116381247"
-                        target="_blank">hassan-javed</a></li>
-                <li>🐙 GitHub: <a href="https://github.com/HassanJavedMirza" target="_blank">HassanJavedMirza</a></li>
-            </ul>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <p>Hassan Javed &copy; 2026. Sketched with code.</p>
