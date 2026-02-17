@@ -703,7 +703,8 @@
             }
         }
 
-        /* Mobile Responsive Fixes */
+        /* ===== MOBILE RESPONSIVE FIXES ===== */
+        /* Image on RIGHT, name on LEFT - exactly as you want */
         @media (max-width: 768px) {
             body {
                 padding: 0;
@@ -721,42 +722,49 @@
                 flex-wrap: wrap;
             }
 
-            /* FIXED: Hero section on mobile */
+            /* FIXED: Hero section - Image on RIGHT, name on LEFT */
             .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
+                flex-direction: row !important; /* Force side-by-side layout */
+                text-align: left;
+                gap: 1rem;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .hero-content {
-                text-align: center;
-                order: 2; /* Makes content appear after image */
+                flex: 1;
+                text-align: left;
             }
 
             .hero-image {
-                order: 1; /* Makes image appear first */
-                margin-bottom: 0;
+                flex-shrink: 0;
+                margin-left: auto; /* Push image to the right */
             }
 
             .hero h1 {
-                font-size: 2.2rem;
-                margin-top: 0.5rem;
+                font-size: 1.8rem;
+                margin-top: 0;
+                line-height: 1.2;
             }
 
             .hero p {
-                font-size: 1.1rem;
-                margin-left: auto;
-                margin-right: auto;
+                font-size: 1rem;
+                margin-left: 0;
             }
 
             .hero-image img {
-                width: 150px;
-                height: 150px;
+                width: 120px;
+                height: 120px;
             }
 
-            /* Fix personal touch on mobile */
+            /* Personal touch adjustment */
             .personal-touch {
-                text-align: left;
+                margin-top: 1rem;
+                padding: 0.8rem;
+            }
+
+            .personal-touch p {
+                font-size: 0.9rem;
             }
 
             .skills-grid {
@@ -772,7 +780,7 @@
                 padding: 0 1rem 1rem;
             }
 
-            /* Fix project card buttons on mobile */
+            /* Project card buttons on mobile */
             .links-flex {
                 flex-direction: column;
                 width: 100%;
@@ -783,7 +791,7 @@
                 justify-content: center;
             }
 
-            /* Fix modal on mobile */
+            /* Modal on mobile */
             .modal-content {
                 max-width: 95%;
                 max-height: 95vh;
@@ -798,12 +806,12 @@
                 font-size: 1.5rem;
             }
 
-            /* Fix section titles */
+            /* Section titles */
             .section-title {
                 font-size: 1.8rem;
             }
 
-            /* Fix footer */
+            /* Footer */
             footer {
                 padding: 1.5rem 1rem;
             }
@@ -819,17 +827,29 @@
 
         /* Extra small devices */
         @media (max-width: 480px) {
+            .hero {
+                gap: 0.8rem;
+            }
+            
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .hero-image img {
-                width: 130px;
-                height: 130px;
+                width: 100px;
+                height: 100px;
+            }
+
+            .personal-touch {
+                padding: 0.6rem;
+            }
+            
+            .personal-touch p {
+                font-size: 0.8rem;
             }
 
             .project-card h3 {
@@ -1074,7 +1094,7 @@
 
                 <div class="sketch-box" style="margin-bottom: 0;">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Send a message</h3>
-                    <!-- FIXED: Formspree Integration -->
+                    <!-- Formspree Integration -->
                     <form id="contactForm" class="contact-form" action="https://formspree.io/f/xlgwnwko" method="POST">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your name" required>
