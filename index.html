@@ -302,8 +302,12 @@
         }
         .skill-tag:hover { background: var(--accent); color: white; transform: scale(1.05); border-color: var(--accent); }
 
-        /* Projects */
-        .projects-grid { display: grid; gap: 2rem; }
+        /* Projects - NEW 2-COLUMN LAYOUT */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem; 
+        }
         .project-card h3 { font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
         .project-card p { font-size: 1rem; margin-bottom: 1rem; color: #4b5563; }
         .tag-list { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -468,6 +472,10 @@
             .personal-touch p { font-size: 0.9rem; }
 
             .skills-grid { grid-template-columns: 1fr; }
+            
+            /* RESPONSIVE: 1 column on mobile */
+            .projects-grid { grid-template-columns: 1fr; }
+            
             .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
             .content-wrapper { padding: 0 1rem 1rem; }
 
@@ -629,6 +637,21 @@
             <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Featured Work</h2>
             <div class="projects-grid">
 
+                <!-- NEW: Wallet Risk Analyzer -->
+                <div class="sketch-box project-card" onclick="openProjectModal('wallet')">
+                    <h3><i class="fa-solid fa-shield-halved"></i> Wallet Risk Analyzer</h3>
+                    <p>Production-grade AI system analyzing Ethereum wallets for fraud risk using ML + real-time blockchain data. Detects mixer patterns, bot behavior, and suspicious transactions.</p>
+                    <div class="tag-list">
+                        <span class="tag">FastAPI</span><span class="tag">Scikit-learn</span>
+                        <span class="tag">Docker</span><span class="tag">Redis</span><span class="tag">Web3</span>
+                    </div>
+                    <div class="links-flex" onclick="event.stopPropagation()">
+                        <a href="https://github.com/HassanJavedMirza/wallet-risk-analyzer" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://wallet-risk-analyzer-production.up.railway.app/docs" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                        <button onclick="openProjectModal('wallet')" class="btn"><i class="fa-regular fa-file-lines"></i> Case Study</button>
+                    </div>
+                </div>
+
                 <div class="sketch-box project-card" onclick="openProjectModal('cognitive')">
                     <h3><i class="fa-solid fa-brain"></i> Cognitive Load Assessment</h3>
                     <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability and responsible AI with comprehensive monitoring and ethical considerations.</p>
@@ -742,6 +765,53 @@
                     <li>🎨 Hugging Face FLUX (image generation)</li>
                     <li>💾 Output storage & delivery</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Wallet Risk Analyzer Modal -->
+    <div id="walletModal" class="modal" onclick="closeProjectModal('wallet', event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeProjectModal('wallet', event)">&times;</button>
+            <div class="project-placeholder" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
+                <i class="fa-solid fa-shield-halved" style="font-size: 4rem; margin-right: 1rem;"></i> Wallet Risk Analyzer
+            </div>
+            <div class="modal-details">
+                <h2>🔐 Wallet Risk Analyzer</h2>
+                <p style="color: #4b5563; margin-bottom: 1.5rem;">AI-powered fraud detection system for Ethereum wallets using ML + real-time blockchain data</p>
+                <h3>🎯 The Challenge</h3>
+                <p>Build a production-grade system that analyzes Ethereum wallet addresses for fraudulent behavior patterns in real-time, with sub-3-second response times and explainable risk scores.</p>
+                <h3>🔧 My Approach</h3>
+                <ul>
+                    <li>Integrated Etherscan API v2 for real-time blockchain data ingestion</li>
+                    <li>Engineered 16+ behavioral features from transaction patterns</li>
+                    <li>Built Random Forest classifier for risk scoring (0-100 scale)</li>
+                    <li>Implemented Redis caching for 60%+ cache hit rate</li>
+                    <li>Deployed with Docker on Railway for production reliability</li>
+                    <li>Created interactive Swagger UI for instant API testing</li>
+                </ul>
+                <h3>🛠️ Tech Stack</h3>
+                <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Scikit-learn</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">Etherscan API</span><span class="tag">Railway</span></div>
+                <h3>📊 Key Outcomes</h3>
+                <ul>
+                    <li>✅ 85%+ accuracy on rule-based test cases</li>
+                    <li>⚡ Sub-3-second end-to-end response time</li>
+                    <li>🎯 Detects mixer patterns, bot behavior, new account scams</li>
+                    <li>🚀 Deployed to production in <24 hours</li>
+                    <li>📝 Fully documented with OpenAPI/Swagger</li>
+                </ul>
+                <h3>🔍 Risk Patterns Detected</h3>
+                <ul>
+                    <li>New accounts with suspicious high activity</li>
+                    <li>Mixer-like transaction patterns (many in, few out)</li>
+                    <li>High transaction value volatility</li>
+                    <li>Abnormal gas price usage (rushing transactions)</li>
+                    <li>Failed transaction spikes (bot testing)</li>
+                </ul>
+                <div class="links-flex" style="margin-top: 1rem;">
+                    <a href="https://github.com/HassanJavedMirza/wallet-risk-analyzer" target="_blank" class="btn"><i class="fa-brands fa-github"></i> View Code</a>
+                    <a href="https://wallet-risk-analyzer-production.up.railway.app/docs" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Try Live API</a>
+                </div>
             </div>
         </div>
     </div>
