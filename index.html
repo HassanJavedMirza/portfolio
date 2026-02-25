@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,165 +8,83 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
         :root {
-            --bg: #fdfdfd;
-            --text: #1a1a1a;
-            --accent: #2563eb;
-            --accent-light: #3b82f6;
-            --border: #1a1a1a;
+            --bg: #fdfdfd; --text: #1a1a1a; --accent: #2563eb;
+            --accent-light: #3b82f6; --border: #1a1a1a;
             --border-light: #e5e7eb;
             --sketchy-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.02) 50%, transparent 100%);
-            animation: heatWave 8s ease-in-out infinite;
-            opacity: 0.4;
-        }
-
-        @keyframes heatWave {
-            0%, 100% { transform: translateX(-2%) skewX(0.5deg); }
-            25% { transform: translateX(2%) skewX(-0.3deg); }
-            50% { transform: translateX(-1%) skewX(0.4deg); }
-            75% { transform: translateX(1.5%) skewX(-0.2deg); }
-        }
-
-        .content-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        h1, h2, h3, .sketch-font { font-family: 'Architects Daughter', cursive; font-weight: normal; }
-
-        .sketch-box {
-            border: 2px solid var(--border);
-            border-radius: var(--sketchy-radius);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            background: white;
-            transition: var(--transition);
-            cursor: default;
-        }
-
-        .sketch-box:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0px var(--border); }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; background: linear-gradient(90deg, transparent 0%, rgba(37,99,235,0.02) 50%, transparent 100%); animation: heatWave 8s ease-in-out infinite; opacity: 0.4; }
+        @keyframes heatWave { 0%,100% { transform: translateX(-2%) skewX(0.5deg); } 25% { transform: translateX(2%) skewX(-0.3deg); } 50% { transform: translateX(-1%) skewX(0.4deg); } 75% { transform: translateX(1.5%) skewX(-0.2deg); } }
+        .content-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 2rem 2rem; position: relative; z-index: 2; }
+        h1,h2,h3,.sketch-font { font-family: 'Architects Daughter', cursive; font-weight: normal; }
+        .sketch-box { border: 2px solid var(--border); border-radius: var(--sketchy-radius); padding: 1.5rem; margin-bottom: 2rem; position: relative; background: white; transition: var(--transition); cursor: default; }
+        .sketch-box:hover { transform: translate(-4px,-4px); box-shadow: 8px 8px 0px var(--border); }
         .project-card { transition: var(--transition); cursor: pointer; }
-        .project-card:hover { transform: translate(-4px, -4px) scale(1.01); box-shadow: 10px 10px 0px var(--border); border-color: var(--accent); }
-
-        /* NAVBAR */
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 4rem; padding: 1rem 5%; width: 100%;
-            background: rgba(248, 249, 250, 0.95);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-bottom: 2px solid transparent;
-            transition: var(--transition); box-sizing: border-box;
-        }
+        .project-card:hover { transform: translate(-4px,-4px) scale(1.01); box-shadow: 10px 10px 0px var(--border); border-color: var(--accent); }
+        nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; padding: 1rem 5%; width: 100%; background: rgba(248,249,250,0.95); backdrop-filter: blur(10px); border-bottom: 2px solid transparent; transition: var(--transition); box-sizing: border-box; }
         nav.scrolled { border-bottom-color: var(--border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.05); background: rgba(240,241,243,0.98); }
         .nav-logo { font-size: 1.5rem; text-decoration: none; color: var(--text); transition: var(--transition); z-index: 101; }
         .nav-logo:hover { color: var(--accent); transform: scale(1.05); }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a { text-decoration: none; color: var(--text); border-bottom: 2px dashed transparent; font-size: 0.95rem; font-weight: 500; padding-bottom: 0.25rem; transition: var(--transition); }
         .nav-links a:hover { border-bottom: 2px dashed var(--accent); color: var(--accent); transform: translateY(-2px); }
-
         .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; cursor: pointer; z-index: 101; background: none; border: none; padding: 0; }
         .hamburger span { display: block; width: 100%; height: 2.5px; background: var(--text); border-radius: 3px; transition: var(--transition); transform-origin: center; }
         .hamburger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
-
         .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(253,253,253,0.98); backdrop-filter: blur(15px); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; animation: menuFadeIn 0.3s ease-out; }
         .mobile-menu.open { display: flex; }
         @keyframes menuFadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .mobile-menu a { text-decoration: none; color: var(--text); font-family: 'Architects Daughter', cursive; font-size: 2rem; border-bottom: 3px dashed transparent; padding-bottom: 0.3rem; transition: var(--transition); }
         .mobile-menu a:hover { color: var(--accent); border-bottom-color: var(--accent); transform: translateX(8px); }
-
-        /* HERO */
         .hero { margin-bottom: 5rem; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 3rem; }
         .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .hero-image { flex-shrink: 0; position: relative; transition: var(--transition); align-self: flex-start; margin-top: 0.5rem; }
         .hero-image:hover { transform: rotate(2deg) scale(1.02); }
-        .hero-image img { width: 200px; height: 200px; object-fit: cover; object-position: top center; border: 3px solid var(--border); border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; display: block; transition: var(--transition); }
-        .hero-image::after { content: ''; position: absolute; top: 8px; left: 8px; right: -8px; bottom: -8px; border: 2px dashed var(--accent); border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; z-index: -1; opacity: 0; transition: var(--transition); }
+        .hero-image img { width: 200px; height: 200px; object-fit: cover; object-position: top center; border: 3px solid var(--border); border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; display: block; transition: var(--transition); }
+        .hero-image::after { content: ''; position: absolute; top: 8px; left: 8px; right: -8px; bottom: -8px; border: 2px dashed var(--accent); border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; z-index: -1; opacity: 0; transition: var(--transition); }
         .hero-image:hover::after { opacity: 1; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 1rem; line-height: 1.1; }
+        .hero h1 { font-size: clamp(2.5rem,8vw,4rem); margin-bottom: 1rem; line-height: 1.1; }
         .hero p { font-size: 1.25rem; color: #4b5563; max-width: 600px; }
         .section-title { font-size: 2rem; margin-bottom: 2rem; display: inline-block; border-bottom: 3px solid var(--accent); transition: var(--transition); }
         .section-title:hover { transform: translateX(5px); }
-
-        /* Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1.5rem; }
         .skill-category { padding: 1rem; transition: var(--transition); }
         .skill-category:hover { transform: translateY(-3px); }
         .skill-category h3 { font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
         .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .skill-tag { font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 5px; background: #f5f5f5; transition: var(--transition); }
         .skill-tag:hover { background: var(--accent); color: white; transform: scale(1.05); border-color: var(--accent); }
-
-        /* Projects */
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
         .project-card h3 { font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
         .project-card p { font-size: 1rem; margin-bottom: 1rem; color: #4b5563; }
         .tag-list { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .tag { font-size: 0.8rem; padding: 0.2rem 0.6rem; border: 1px solid var(--border); border-radius: 5px; background: #f0f0f0; transition: var(--transition); }
         .tag:hover { background: var(--text); color: white; transform: translateY(-2px); }
         .links-flex { display: flex; gap: 1rem; flex-wrap: wrap; }
-
         .btn { text-decoration: none; color: var(--text); font-family: 'Architects Daughter', cursive; padding: 0.6rem 1.2rem; border: 2px solid var(--border); border-radius: var(--sketchy-radius); font-size: 1rem; background: white; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; }
         .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
-        .btn:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0px var(--border); }
+        .btn:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0px var(--border); }
         .btn-primary:hover { background: var(--accent-light); box-shadow: 5px 5px 0px #000; }
-        .btn:active { transform: translate(0, 0); box-shadow: 2px 2px 0px var(--border); }
+        .btn:active { transform: translate(0,0); box-shadow: 2px 2px 0px var(--border); }
+
+        /* ── LIVE BADGE ── */
+        .live-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: #ecfdf5; border: 1.5px solid #10b981; color: #065f46; border-radius: 20px; font-size: 0.71rem; font-weight: 700; padding: 0.25rem 0.65rem; margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+        .live-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; animation: livePulse 1.5s ease-in-out infinite; flex-shrink: 0; }
+        @keyframes livePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* ── WIP BADGE ── */
-        .wip-badge {
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            background: #fff8e1; border: 1.5px solid #f59e0b;
-            color: #92400e; border-radius: 20px;
-            font-size: 0.71rem; font-weight: 700;
-            padding: 0.25rem 0.65rem; margin-bottom: 0.8rem;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.04em; text-transform: uppercase;
-        }
-        .wip-badge::before {
-            content: ''; width: 7px; height: 7px; border-radius: 50%;
-            background: #f59e0b; box-shadow: 0 0 6px #f59e0b;
-            animation: wipBlink 1.5s ease-in-out infinite; flex-shrink: 0;
-        }
-        @keyframes wipBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .wip-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: #fff8e1; border: 1.5px solid #f59e0b; color: #92400e; border-radius: 20px; font-size: 0.71rem; font-weight: 700; padding: 0.25rem 0.65rem; margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+        .wip-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 6px #f59e0b; animation: wipBlink 1.5s ease-in-out infinite; flex-shrink: 0; }
+        @keyframes wipBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
 
-        /* ── PROGRESS BAR ── */
-        .progress-wrap { margin: 0.5rem 0 1.1rem; }
-        .progress-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7280; margin-bottom: 0.35rem; font-family: 'Inter', sans-serif; }
-        .progress-labels .pct { font-weight: 700; color: #d97706; }
-        .progress-track { width: 100%; height: 7px; background: #f3f4f6; border-radius: 99px; border: 1px solid #e5e7eb; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #f59e0b, #fbbf24); width: 75%; }
-
-        /* Contact */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .contact-list { list-style: none; }
         .contact-list li { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; transition: var(--transition); }
@@ -176,19 +93,16 @@
         .contact-list a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border-light); transition: var(--transition); }
         .contact-list a:hover { border-color: var(--accent); color: var(--accent); }
         .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.95rem; background: white; transition: var(--transition); }
+        .form-group input,.form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.95rem; background: white; transition: var(--transition); }
         .form-group textarea { min-height: 100px; resize: vertical; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); transform: translate(-2px,-2px); box-shadow: 4px 4px 0px var(--border); }
+        .form-group input:focus,.form-group textarea:focus { outline: none; border-color: var(--accent); transform: translate(-2px,-2px); box-shadow: 4px 4px 0px var(--border); }
         .form-message { padding: 1rem; border-radius: 10px; font-size: 0.95rem; margin-top: 0.5rem; text-align: center; }
         .form-message.success { background: #10b981; color: white; border: 2px solid var(--border); }
         .form-message.error { background: #ef4444; color: white; border: 2px solid var(--border); }
-
         footer { margin-top: 5rem; padding: 2rem 0; border-top: 2px dashed var(--border-light); text-align: center; font-size: 0.9rem; color: #6b7280; position: relative; z-index: 2; }
         .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
         .social-links a { color: var(--text); font-size: 1.5rem; transition: var(--transition); }
         .social-links a:hover { color: var(--accent); transform: translateY(-3px) scale(1.1); }
-
-        /* MODALS */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); animation: fadeIn 0.3s ease-out; backdrop-filter: blur(5px); }
         .modal.active { display: flex; justify-content: center; align-items: center; }
         .modal-content { position: relative; max-width: 90%; max-height: 90vh; animation: slideIn 0.3s ease-out; background: white; border-radius: var(--sketchy-radius); border: 3px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
@@ -202,93 +116,52 @@
         .modal-close { position: absolute; top: 10px; right: 15px; color: var(--text); font-size: 2rem; font-weight: bold; cursor: pointer; background: white; border: 2px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 1; transition: var(--transition); z-index: 1001; }
         .modal-close:hover { background: var(--accent); color: white; transform: rotate(90deg) scale(1.1); }
         .project-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, var(--accent-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-family: 'Architects Daughter', cursive; border-bottom: 2px solid var(--border-light); }
-
-        /* ── AICALLER modal specifics ── */
         .modal-img-wrap { position: relative; cursor: pointer; }
         .modal-img-wrap img { display: block; transition: opacity 0.2s ease; }
-        .img-switcher-bar {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.58); color: white;
-            font-size: 0.71rem; font-family: 'Inter', sans-serif;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.3rem 0.85rem;
-        }
+        .img-switcher-bar { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.58); color: white; font-size: 0.71rem; font-family: 'Inter', sans-serif; display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.85rem; }
         .img-dots { display: flex; gap: 0.4rem; align-items: center; }
         .img-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.2s; }
         .img-dot.on { background: white; }
-
-        /* modal progress */
-        .mprogress-wrap { margin: 0.4rem 0 1.25rem; }
-        .mprogress-labels { display: flex; justify-content: space-between; font-size: 0.77rem; color: #6b7280; margin-bottom: 0.35rem; font-family: 'Inter', sans-serif; }
-        .mprogress-labels .mpct { font-weight: 700; color: #d97706; }
-        .mprogress-track { width: 100%; height: 8px; background: #f3f4f6; border-radius: 99px; border: 1px solid #e5e7eb; overflow: hidden; }
-        .mprogress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #f59e0b, #fbbf24); width: 75%; }
-
-        /* checklist */
         .checklist { list-style: none !important; margin-left: 0 !important; margin-bottom: 1.25rem; }
         .checklist li { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.45rem; font-size: 0.9rem; }
         .ci { flex-shrink: 0; font-size: 0.85rem; margin-top: 0.08rem; }
         .ci-done { color: #10b981; }
         .ci-wait { color: #f59e0b; }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideIn { from { transform: scale(0.9) translateY(-20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
-
         .personal-touch { margin-top: 1.5rem; padding: 1rem; background: #fafafa; border-radius: 10px; border-left: 4px solid var(--accent); }
         .personal-touch p { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .personal-touch i { color: var(--accent); }
-
         .btn.loading { position: relative; color: transparent; }
         .btn.loading::after { content: ''; position: absolute; width: 16px; height: 16px; top: 50%; left: 50%; margin-left: -8px; margin-top: -8px; border: 2px solid white; border-radius: 50%; border-top-color: transparent; animation: spinner 0.6s linear infinite; }
         @keyframes spinner { to { transform: rotate(360deg); } }
-
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links { display: none; }
+            .hamburger { display: flex; } .nav-links { display: none; }
             nav { padding: 1rem 1.2rem; margin-bottom: 2.5rem; }
             .hero { flex-direction: row !important; align-items: flex-start; gap: 1rem; justify-content: space-between; }
-            .hero-content { flex: 1; text-align: left; }
-            .hero-image { flex-shrink: 0; }
-            .hero h1 { font-size: 1.8rem; margin-top: 0; line-height: 1.2; }
-            .hero p { font-size: 1rem; }
+            .hero-content { flex: 1; text-align: left; } .hero-image { flex-shrink: 0; }
+            .hero h1 { font-size: 1.8rem; margin-top: 0; line-height: 1.2; } .hero p { font-size: 1rem; }
             .hero-image img { width: 120px; height: 120px; }
-            .personal-touch { margin-top: 1rem; padding: 0.8rem; }
-            .personal-touch p { font-size: 0.9rem; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; } .projects-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
             .content-wrapper { padding: 0 1rem 1rem; }
-            .links-flex { flex-direction: column; width: 100%; }
-            .links-flex .btn { width: 100%; justify-content: center; }
-            .modal-content { max-width: 95%; max-height: 95vh; }
-            .modal-details { max-height: 60vh; padding: 1rem; }
-            .modal-details h2 { font-size: 1.5rem; }
-            .section-title { font-size: 1.8rem; }
-            footer { padding: 1.5rem 1rem; }
-            .social-links { gap: 1rem; }
-            .social-links a { font-size: 1.3rem; }
+            .links-flex { flex-direction: column; width: 100%; } .links-flex .btn { width: 100%; justify-content: center; }
+            .modal-content { max-width: 95%; max-height: 95vh; } .modal-details { max-height: 60vh; padding: 1rem; }
+            .section-title { font-size: 1.8rem; } footer { padding: 1.5rem 1rem; } .social-links { gap: 1rem; }
         }
         @media (max-width: 480px) {
-            .hero { gap: 0.8rem; }
-            .hero h1 { font-size: 1.5rem; }
-            .hero p { font-size: 0.9rem; }
-            .hero-image img { width: 100px; height: 100px; }
-            .personal-touch { padding: 0.6rem; }
-            .personal-touch p { font-size: 0.8rem; }
-            .project-card h3 { font-size: 1.3rem; }
+            .hero { gap: 0.8rem; } .hero h1 { font-size: 1.5rem; } .hero p { font-size: 0.9rem; }
+            .hero-image img { width: 100px; height: 100px; } .project-card h3 { font-size: 1.3rem; }
             .modal-content { max-width: 100%; border-radius: 10px; }
         }
     </style>
 </head>
-
 <body>
     <nav id="navbar">
         <a href="#" class="nav-logo sketch-font"><i class="fa-solid fa-code"></i> Hassan Javed.</a>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Work</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">About</a><a href="#skills">Skills</a>
+            <a href="#projects">Work</a><a href="#contact">Contact</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
@@ -315,19 +188,17 @@
                     <p><i class="fa-solid fa-dumbbell"></i> When I'm not coding, I'm lifting or reading sci-fi</p>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="me.jpeg" alt="Hassan Javed">
-            </div>
+            <div class="hero-image"><img src="me.jpeg" alt="Hassan Javed"></div>
         </section>
 
         <!-- ABOUT -->
-        <section id="about" style="margin-bottom: 5rem;">
+        <section id="about" style="margin-bottom:5rem">
             <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> About</h2>
             <div class="sketch-box">
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Hey! I'm Hassan — an AI Software Engineer who believes in building technology that actually helps people.</p>
-                <p style="margin-bottom: 1rem;">Entry-level AI Software Engineer with a Bachelor's in Computer Science (AI specialization). Experienced in designing and deploying production-ready backend APIs using Python and FastAPI, building end-to-end ML pipelines, and applying Computer Vision with YOLO. Strong foundation in relational database design, automated AI workflow orchestration, and containerized deployments.</p>
-                <p>Passionate about solving real-world problems with responsible, scalable AI — actively seeking an entry-level role on an engineering team that ships intelligent products that make a difference.</p>
-                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <p style="font-size:1.1rem;margin-bottom:1rem">Hey! I'm Hassan — an AI Software Engineer who believes in building technology that actually helps people.</p>
+                <p style="margin-bottom:1rem">Entry-level AI Software Engineer with a Bachelor's in Computer Science (AI specialization). Experienced in designing and deploying production-ready backend APIs using Python and FastAPI, building end-to-end ML pipelines, and applying Computer Vision with YOLO.</p>
+                <p>Passionate about solving real-world problems with responsible, scalable AI — actively seeking an entry-level role on an engineering team that ships intelligent products.</p>
+                <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
                     <span class="skill-tag"><i class="fa-regular fa-face-smile"></i> Open to work</span>
                     <span class="skill-tag"><i class="fa-regular fa-compass"></i> Based in Pakistan</span>
                     <span class="skill-tag"><i class="fa-regular fa-clock"></i> 3+ years coding</span>
@@ -336,119 +207,54 @@
         </section>
 
         <!-- SKILLS -->
-        <section id="skills" style="margin-bottom: 5rem;">
+        <section id="skills" style="margin-bottom:5rem">
             <h2 class="section-title"><i class="fa-solid fa-microchip"></i> Skills</h2>
             <div class="sketch-box">
                 <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fa-brands fa-python"></i> Languages</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">.NET</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-gear"></i> Backend</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">FastAPI</span><span class="skill-tag">RESTful API</span>
-                            <span class="skill-tag">API Integration</span><span class="skill-tag">Pydantic</span><span class="skill-tag">Uvicorn</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-robot"></i> ML & AI</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">Scikit-learn</span><span class="skill-tag">TF-IDF</span>
-                            <span class="skill-tag">ML Pipelines</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-eye"></i> Computer Vision</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">YOLO</span><span class="skill-tag">Roboflow</span>
-                            <span class="skill-tag">CVAT</span><span class="skill-tag">OpenCV</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-database"></i> Databases</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">SQLite</span><span class="skill-tag">Query Optimisation</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-code"></i> Frontend</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">React.js</span><span class="skill-tag">Next.js</span>
-                            <span class="skill-tag">Tailwind</span><span class="skill-tag">HTML/CSS</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-solid fa-diagram-project"></i> Automation</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">N8N</span><span class="skill-tag">Airflow</span>
-                            <span class="skill-tag">Groq API</span><span class="skill-tag">Hugging Face</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fa-brands fa-docker"></i> DevOps</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">Docker</span><span class="skill-tag">Docker Compose</span>
-                            <span class="skill-tag">Git</span><span class="skill-tag">GitHub Actions</span>
-                        </div>
-                    </div>
+                    <div class="skill-category"><h3><i class="fa-brands fa-python"></i> Languages</h3><div class="skill-list"><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">.NET</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-gear"></i> Backend</h3><div class="skill-list"><span class="skill-tag">FastAPI</span><span class="skill-tag">RESTful API</span><span class="skill-tag">Pydantic</span><span class="skill-tag">Uvicorn</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-robot"></i> ML & AI</h3><div class="skill-list"><span class="skill-tag">Scikit-learn</span><span class="skill-tag">TF-IDF</span><span class="skill-tag">ML Pipelines</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-eye"></i> Computer Vision</h3><div class="skill-list"><span class="skill-tag">YOLO</span><span class="skill-tag">Roboflow</span><span class="skill-tag">CVAT</span><span class="skill-tag">OpenCV</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-database"></i> Databases</h3><div class="skill-list"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQLite</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-code"></i> Frontend</h3><div class="skill-list"><span class="skill-tag">React.js</span><span class="skill-tag">Next.js</span><span class="skill-tag">Tailwind</span><span class="skill-tag">HTML/CSS</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-diagram-project"></i> Automation</h3><div class="skill-list"><span class="skill-tag">N8N</span><span class="skill-tag">Airflow</span><span class="skill-tag">Groq API</span><span class="skill-tag">Hugging Face</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-brands fa-docker"></i> DevOps</h3><div class="skill-list"><span class="skill-tag">Docker</span><span class="skill-tag">Docker Compose</span><span class="skill-tag">Git</span><span class="skill-tag">GitHub Actions</span></div></div>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS -->
-        <section id="projects" style="margin-bottom: 5rem;">
+        <section id="projects" style="margin-bottom:5rem">
             <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Featured Work</h2>
             <div class="projects-grid">
 
-                <!-- ═══════════════════════════
-                     AICaller  ← NEW, FIRST CARD
-                     ═══════════════════════════ -->
+                <!-- ══════════════════════════════
+                     AICALLER — LIVE & SHIPPED ✅
+                     ══════════════════════════════ -->
                 <div class="sketch-box project-card" onclick="openProjectModal('aicaller')">
-                    <div class="wip-badge">🔧 75% Complete · In Progress</div>
+                    <div class="live-badge">🚀 Live — Shipped</div>
                     <h3><i class="fa-solid fa-phone-volume"></i> AICaller</h3>
                     <p>AI-powered debt recovery system that automatically calls overdue clients using a human-like voice agent, holds a full conversation, logs the transcript, and sends SMS if no answer — zero manual follow-up.</p>
-
-                    <div class="progress-wrap">
-                        <div class="progress-labels">
-                            <span>Build progress</span>
-                            <span class="pct">75% — pending Vapi phone credentials</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill"></div>
-                        </div>
-                    </div>
-
                     <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">APScheduler</span>
-                        <span class="tag">Vapi.ai</span>
-                        <span class="tag">JWT Auth</span>
-                        <span class="tag">Webhooks</span>
-                        <span class="tag">SQLAlchemy</span>
+                        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">MySQL</span>
+                        <span class="tag">APScheduler</span><span class="tag">Vapi.ai</span><span class="tag">JWT Auth</span>
+                        <span class="tag">Webhooks</span><span class="tag">Railway</span><span class="tag">Vercel</span>
                     </div>
-
                     <div class="links-flex" onclick="event.stopPropagation()">
-                        <button onclick="openProjectModal('aicaller')" class="btn btn-primary">
+                        <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                        </a>
+                        <button onclick="openProjectModal('aicaller')" class="btn">
                             <i class="fa-regular fa-file-lines"></i> Case Study
                         </button>
                     </div>
                 </div>
 
-                <!-- Wallet Risk Analyzer -->
+                <!-- Wallet -->
                 <div class="sketch-box project-card" onclick="openProjectModal('wallet')">
                     <h3><i class="fa-solid fa-shield-halved"></i> Wallet Risk Analyzer</h3>
                     <p>Production-grade AI system analyzing Ethereum wallets for fraud risk using ML + real-time blockchain data. Detects mixer patterns, bot behavior, and suspicious transactions.</p>
-                    <div class="tag-list">
-                        <span class="tag">FastAPI</span><span class="tag">Scikit-learn</span>
-                        <span class="tag">Docker</span><span class="tag">Redis</span><span class="tag">Web3</span>
-                    </div>
+                    <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Scikit-learn</span><span class="tag">Docker</span><span class="tag">Redis</span><span class="tag">Web3</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/wallet-risk-analyzer" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
                         <a href="https://wallet-risk-analyzer-production.up.railway.app/docs" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
@@ -456,13 +262,11 @@
                     </div>
                 </div>
 
+                <!-- Cognitive -->
                 <div class="sketch-box project-card" onclick="openProjectModal('cognitive')">
                     <h3><i class="fa-solid fa-brain"></i> Cognitive Load Assessment</h3>
-                    <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability and responsible AI with comprehensive monitoring and ethical considerations.</p>
-                    <div class="tag-list">
-                        <span class="tag">FastAPI</span><span class="tag">Python</span>
-                        <span class="tag">Docker</span><span class="tag">MySQL</span><span class="tag">Redis</span>
-                    </div>
+                    <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability and responsible AI.</p>
+                    <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">MySQL</span><span class="tag">Redis</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/Cognitive_ai" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
                         <a href="https://cognitive-ai-rho.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
@@ -470,13 +274,11 @@
                     </div>
                 </div>
 
+                <!-- Content -->
                 <div class="sketch-box project-card" onclick="openProjectModal('content')">
                     <h3><i class="fa-solid fa-pen-fancy"></i> AI Content Generator</h3>
-                    <p>Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy. Features user authentication, usage tracking, and multiple AI models.</p>
-                    <div class="tag-list">
-                        <span class="tag">Next.js</span><span class="tag">React</span>
-                        <span class="tag">Clerk</span><span class="tag">OpenAI API</span><span class="tag">Stripe</span>
-                    </div>
+                    <p>Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy.</p>
+                    <div class="tag-list"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Clerk</span><span class="tag">OpenAI API</span><span class="tag">Stripe</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
                         <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
@@ -484,13 +286,11 @@
                     </div>
                 </div>
 
+                <!-- Audio -->
                 <div class="sketch-box project-card" onclick="openProjectModal('audio')">
                     <h3><i class="fa-solid fa-waveform"></i> Audio-to-Image Pipeline</h3>
-                    <p>End-to-end generative AI workflow converting spoken audio to AI-generated images using N8N orchestration, Groq Whisper, and Hugging Face FLUX models.</p>
-                    <div class="tag-list">
-                        <span class="tag">N8N</span><span class="tag">Groq API</span>
-                        <span class="tag">Hugging Face</span><span class="tag">Whisper</span><span class="tag">FLUX</span>
-                    </div>
+                    <p>End-to-end generative AI workflow converting spoken audio to AI-generated images using N8N, Groq Whisper, and Hugging Face FLUX.</p>
+                    <div class="tag-list"><span class="tag">N8N</span><span class="tag">Groq API</span><span class="tag">Hugging Face</span><span class="tag">Whisper</span><span class="tag">FLUX</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <button onclick="openModal()" class="btn btn-primary"><i class="fa-regular fa-image"></i> View Flow</button>
                         <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0Z42IB0M8dAHYjYd9TziWruPYHwBht4G8" target="_blank" class="btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -498,13 +298,11 @@
                     </div>
                 </div>
 
+                <!-- Spam -->
                 <div class="sketch-box project-card" onclick="openProjectModal('spam')">
                     <h3><i class="fa-solid fa-envelope-circle-check"></i> Spam Email Detector</h3>
-                    <p>NLP-based classifier that identifies spam emails with 97% precision using Scikit-Learn and TF-IDF vectorization. Includes interactive web interface.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span><span class="tag">Scikit-learn</span>
-                        <span class="tag">NLP</span><span class="tag">Streamlit</span><span class="tag">NLTK</span>
-                    </div>
+                    <p>NLP-based classifier that identifies spam emails with 97% precision using Scikit-Learn and TF-IDF vectorization.</p>
+                    <div class="tag-list"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">NLP</span><span class="tag">Streamlit</span><span class="tag">NLTK</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
                         <a href="https://spam-email-detector-beta.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
@@ -519,25 +317,23 @@
         <section id="contact">
             <h2 class="section-title"><i class="fa-regular fa-paper-plane"></i> Get in Touch</h2>
             <div class="contact-grid">
-                <div class="sketch-box" style="margin-bottom: 0;">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Let's connect</h3>
+                <div class="sketch-box" style="margin-bottom:0">
+                    <h3 style="margin-bottom:1.5rem;font-size:1.3rem">Let's connect</h3>
                     <ul class="contact-list">
-                        <li><i class="fa-regular fa-envelope"></i> <a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
-                        <li><i class="fa-regular fa-phone"></i> <a href="tel:+923155077034">+92 3155077034</a></li>
-                        <li><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank">linkedin.com/in/hassan-javed</a></li>
-                        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/HassanJavedMirza" target="_blank">github.com/HassanJavedMirza</a></li>
+                        <li><i class="fa-regular fa-envelope"></i><a href="mailto:hj1888371@gmail.com">hj1888371@gmail.com</a></li>
+                        <li><i class="fa-regular fa-phone"></i><a href="tel:+923155077034">+92 3155077034</a></li>
+                        <li><i class="fa-brands fa-linkedin"></i><a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank">linkedin.com/in/hassan-javed</a></li>
+                        <li><i class="fa-brands fa-github"></i><a href="https://github.com/HassanJavedMirza" target="_blank">github.com/HassanJavedMirza</a></li>
                     </ul>
                 </div>
-                <div class="sketch-box" style="margin-bottom: 0;">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Send a message</h3>
+                <div class="sketch-box" style="margin-bottom:0">
+                    <h3 style="margin-bottom:1.5rem;font-size:1.3rem">Send a message</h3>
                     <form id="contactForm" class="contact-form" action="https://formspree.io/f/xlgwnwko" method="POST">
                         <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
                         <div class="form-group"><input type="email" name="email" placeholder="Your email" required></div>
                         <div class="form-group"><textarea name="message" placeholder="What would you like to say?" required></textarea></div>
                         <input type="text" name="_gotcha" style="display:none">
-                        <button type="submit" id="submitBtn" class="btn btn-primary">
-                            <i class="fa-regular fa-paper-plane"></i> Send Message
-                        </button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Send Message</button>
                     </form>
                     <div id="formMessage" class="form-message"></div>
                 </div>
@@ -551,84 +347,71 @@
             <a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:hj1888371@gmail.com"><i class="fa-regular fa-envelope"></i></a>
         </div>
-        <p>Hassan Javed &copy; 2026. Built with <i class="fa-regular fa-heart" style="color: var(--accent);"></i> and sketchy vibes.</p>
+        <p>Hassan Javed &copy; 2026. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.</p>
     </footer>
 
-    <!-- ═══════════════════════════════════════
-         AICALLER MODAL  ← NEW
-         ═══════════════════════════════════════ -->
-    <div id="aicallerModal" class="modal" onclick="closeProjectModal('aicaller', event)">
-        <div class="modal-content" style="max-width: 660px;" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('aicaller', event)">&times;</button>
-
-            <!-- Switchable screenshots -->
+    <!-- ══════════════════════════════════
+         AICALLER MODAL — 4 screenshots
+         ══════════════════════════════════ -->
+    <div id="aicallerModal" class="modal" onclick="closeProjectModal('aicaller',event)">
+        <div class="modal-content" style="max-width:660px" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeProjectModal('aicaller',event)">&times;</button>
             <div class="modal-img-wrap" onclick="switchAICallerImg()" title="Click to switch screenshot">
                 <img id="aicallerModalImg" src="AICaller1.jpg" alt="AICaller screenshot"/>
                 <div class="img-switcher-bar">
-                    <span id="aicallerImgLabel">1 / 2 — Login Page &nbsp;·&nbsp; click to switch</span>
+                    <span id="aicallerImgLabel">1 / 4 — Welcome Page &nbsp;·&nbsp; click to switch</span>
                     <div class="img-dots">
                         <div class="img-dot on" id="ac-dot-0"></div>
                         <div class="img-dot" id="ac-dot-1"></div>
+                        <div class="img-dot" id="ac-dot-2"></div>
+                        <div class="img-dot" id="ac-dot-3"></div>
                     </div>
                 </div>
             </div>
-
             <div class="modal-details">
                 <h2>📞 AICaller — AI Voice Debt Recovery</h2>
-                <p>An end-to-end system that automatically calls overdue clients with a human-like AI voice agent, logs the full transcript, and sends an SMS fallback if no one answers. Includes a complete admin dashboard for managing clients, invoices, call logs, and scheduler config.</p>
+                <p>An end-to-end system that automatically calls overdue clients with a human-like AI voice agent, logs the full transcript, and sends an SMS fallback if no one answers. Fully deployed and live at <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" style="color:var(--accent)">ai-caller.vercel.app</a>.</p>
 
-                <!-- Progress bar -->
-                <div class="mprogress-wrap">
-                    <div class="mprogress-labels">
-                        <span>Overall completion</span>
-                        <span class="mpct">75% — awaiting Vapi phone credentials to go live</span>
-                    </div>
-                    <div class="mprogress-track"><div class="mprogress-fill"></div></div>
-                </div>
-
-                <h3>✅ What's Built</h3>
+                <h3>✅ What's Built & Shipped</h3>
                 <ul class="checklist">
                     <li><span class="ci ci-done">✓</span> FastAPI backend — full CRUD for clients, invoices & call logs</li>
                     <li><span class="ci ci-done">✓</span> JWT authentication — secure admin login & protected routes</li>
-                    <li><span class="ci ci-done">✓</span> MySQL database — 5 relational tables (admins, clients, invoices, calls, scheduler_settings)</li>
-                    <li><span class="ci ci-done">✓</span> CSV & JSON bulk upload — import hundreds of client records instantly</li>
-                    <li><span class="ci ci-done">✓</span> APScheduler daily watchdog — auto-detects overdue invoices and triggers calls</li>
-                    <li><span class="ci ci-done">✓</span> Vapi.ai integration — outbound AI call trigger fully coded & tested</li>
-                    <li><span class="ci ci-done">✓</span> Webhook endpoint — receives live transcript + AI summary from Vapi post-call</li>
-                    <li><span class="ci ci-done">✓</span> Admin dashboard — stats cards, invoices table, call log viewer, settings panel</li>
-                    <li><span class="ci ci-done">✓</span> Configurable scheduler UI — set call time, active days, max retries</li>
-                    <li><span class="ci ci-done">✓</span> Login page (screenshot 1) + invoice dashboard (screenshot 2)</li>
+                    <li><span class="ci ci-done">✓</span> MySQL database on Railway — 5 relational tables</li>
+                    <li><span class="ci ci-done">✓</span> CSV & JSON bulk upload — import hundreds of records instantly</li>
+                    <li><span class="ci ci-done">✓</span> APScheduler daily watchdog — auto-detects overdue invoices</li>
+                    <li><span class="ci ci-done">✓</span> Vapi.ai integration — outbound AI call trigger fully coded</li>
+                    <li><span class="ci ci-done">✓</span> Webhook endpoint — receives live transcript + AI summary post-call</li>
+                    <li><span class="ci ci-done">✓</span> Admin dashboard — stats, invoices, call logs, settings panel</li>
+                    <li><span class="ci ci-done">✓</span> Voice call testing via Vapi sandbox</li>
+                    <li><span class="ci ci-done">✓</span> Deployed — backend on Railway, frontend on Vercel</li>
                 </ul>
 
-                <h3>⏳ What's Pending</h3>
+                <h3>⏳ Pending (needs paid Vapi number ~$2/mo)</h3>
                 <ul class="checklist">
-                    <li><span class="ci ci-wait">◷</span> Vapi phone number (~$2/mo) — waiting on credentials</li>
-                    <li><span class="ci ci-wait">◷</span> SMS fallback when call goes unanswered</li>
-                    <li><span class="ci ci-wait">◷</span> Production deployment (Railway / Render)</li>
+                    <li><span class="ci ci-wait">◷</span> Live outbound calls to real phone numbers</li>
+                    <li><span class="ci ci-wait">◷</span> SMS fallback for missed calls</li>
                 </ul>
 
                 <h3>🛠️ Tech Stack</h3>
                 <div class="tag-list">
-                    <span class="tag">Python</span>
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">SQLAlchemy</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">Pydantic</span>
-                    <span class="tag">JWT Auth</span>
-                    <span class="tag">APScheduler</span>
-                    <span class="tag">Vapi.ai</span>
-                    <span class="tag">Webhooks</span>
-                    <span class="tag">Pandas</span>
-                    <span class="tag">HTML / CSS / JS</span>
+                    <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
+                    <span class="tag">MySQL</span><span class="tag">JWT Auth</span><span class="tag">APScheduler</span>
+                    <span class="tag">Vapi.ai</span><span class="tag">Webhooks</span><span class="tag">Railway</span><span class="tag">Vercel</span>
                 </div>
 
                 <h3>🎯 Key Technical Decisions</h3>
                 <ul>
-                    <li>APScheduler over Celery — zero broker required, lightweight, perfect for daily single-server scheduling</li>
-                    <li>Vapi.ai over Twilio — built-in conversational AI voice; provider-agnostic design lets you swap to Bland.ai or Retell.ai with no backend changes</li>
-                    <li>LONGTEXT for transcripts — avoids MySQL's 64KB TEXT cap on long AI conversations</li>
-                    <li>Separate <code>/settings/vapi-status</code> endpoint drives the live warning banner on the dashboard in real time</li>
+                    <li>APScheduler over Celery — zero broker, perfect for daily scheduling</li>
+                    <li>Vapi.ai over Twilio — built-in conversational AI voice</li>
+                    <li>bcrypt directly (no passlib) — avoids version conflicts on Railway</li>
+                    <li>allow_origin_regex for CORS — handles dynamic Vercel preview URLs</li>
                 </ul>
+
+                <div class="links-flex" style="margin-top:1.25rem">
+                    <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -640,57 +423,24 @@
             <img src="n8n2.jpg" alt="N8N Workflow Diagram">
             <div class="modal-details">
                 <h2>🎵 Audio-to-Image Pipeline</h2>
-                <p>End-to-end workflow using N8N orchestration:</p>
-                <ul>
-                    <li>🎤 Audio input → Groq Whisper API (transcription)</li>
-                    <li>📝 Text processing → Prompt engineering</li>
-                    <li>🎨 Hugging Face FLUX (image generation)</li>
-                    <li>💾 Output storage & delivery</li>
-                </ul>
+                <ul><li>🎤 Audio input → Groq Whisper API</li><li>📝 Prompt engineering layer</li><li>🎨 Hugging Face FLUX image generation</li><li>💾 Output delivery</li></ul>
             </div>
         </div>
     </div>
 
     <!-- Wallet Modal -->
-    <div id="walletModal" class="modal" onclick="closeProjectModal('wallet', event)">
+    <div id="walletModal" class="modal" onclick="closeProjectModal('wallet',event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('wallet', event)">&times;</button>
-            <div class="project-placeholder" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
-                <i class="fa-solid fa-shield-halved" style="font-size: 4rem; margin-right: 1rem;"></i> Wallet Risk Analyzer
-            </div>
+            <button class="modal-close" onclick="closeProjectModal('wallet',event)">&times;</button>
+            <div class="project-placeholder" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)"><i class="fa-solid fa-shield-halved" style="font-size:4rem;margin-right:1rem"></i> Wallet Risk Analyzer</div>
             <div class="modal-details">
                 <h2>🔐 Wallet Risk Analyzer</h2>
-                <p style="color: #4b5563; margin-bottom: 1.5rem;">AI-powered fraud detection system for Ethereum wallets using ML + real-time blockchain data</p>
-                <h3>🎯 The Challenge</h3>
-                <p>Build a production-grade system that analyzes Ethereum wallet addresses for fraudulent behavior patterns in real-time, with sub-3-second response times and explainable risk scores.</p>
-                <h3>🔧 My Approach</h3>
-                <ul>
-                    <li>Integrated Etherscan API v2 for real-time blockchain data ingestion</li>
-                    <li>Engineered 16+ behavioral features from transaction patterns</li>
-                    <li>Built Random Forest classifier for risk scoring (0-100 scale)</li>
-                    <li>Implemented Redis caching for 60%+ cache hit rate</li>
-                    <li>Deployed with Docker on Railway for production reliability</li>
-                    <li>Created interactive Swagger UI for instant API testing</li>
-                </ul>
+                <p>AI-powered fraud detection for Ethereum wallets using ML + real-time blockchain data.</p>
                 <h3>🛠️ Tech Stack</h3>
                 <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Scikit-learn</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">Etherscan API</span><span class="tag">Railway</span></div>
                 <h3>📊 Key Outcomes</h3>
-                <ul>
-                    <li>✅ 85%+ accuracy on rule-based test cases</li>
-                    <li>⚡ Sub-3-second end-to-end response time</li>
-                    <li>🎯 Detects mixer patterns, bot behavior, new account scams</li>
-                    <li>🚀 Deployed to production in &lt;24 hours</li>
-                    <li>📝 Fully documented with OpenAPI/Swagger</li>
-                </ul>
-                <h3>🔍 Risk Patterns Detected</h3>
-                <ul>
-                    <li>New accounts with suspicious high activity</li>
-                    <li>Mixer-like transaction patterns (many in, few out)</li>
-                    <li>High transaction value volatility</li>
-                    <li>Abnormal gas price usage (rushing transactions)</li>
-                    <li>Failed transaction spikes (bot testing)</li>
-                </ul>
-                <div class="links-flex" style="margin-top: 1rem;">
+                <ul><li>✅ 85%+ accuracy</li><li>⚡ Sub-3s response time</li><li>🎯 Detects mixer patterns, bot behavior</li></ul>
+                <div class="links-flex" style="margin-top:1rem">
                     <a href="https://github.com/HassanJavedMirza/wallet-risk-analyzer" target="_blank" class="btn"><i class="fa-brands fa-github"></i> View Code</a>
                     <a href="https://wallet-risk-analyzer-production.up.railway.app/docs" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Try Live API</a>
                 </div>
@@ -699,35 +449,16 @@
     </div>
 
     <!-- Cognitive Modal -->
-    <div id="cognitiveModal" class="modal" onclick="closeProjectModal('cognitive', event)">
+    <div id="cognitiveModal" class="modal" onclick="closeProjectModal('cognitive',event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('cognitive', event)">&times;</button>
-            <div class="project-placeholder" style="background: linear-gradient(135deg, #2563eb, #1e40af);">
-                <i class="fa-solid fa-brain" style="font-size: 4rem; margin-right: 1rem;"></i> Cognitive AI Architecture
-            </div>
+            <button class="modal-close" onclick="closeProjectModal('cognitive',event)">&times;</button>
+            <div class="project-placeholder" style="background:linear-gradient(135deg,#2563eb,#1e40af)"><i class="fa-solid fa-brain" style="font-size:4rem;margin-right:1rem"></i> Cognitive AI</div>
             <div class="modal-details">
                 <h2>🧠 Cognitive Load Assessment</h2>
-                <p style="color: #4b5563; margin-bottom: 1.5rem;">Real-time EEG processing system for cognitive state classification</p>
-                <h3>🎯 The Challenge</h3>
-                <p>Processing streaming EEG data to classify cognitive load states (low, medium, high) with minimal latency while ensuring data privacy and ethical AI practices.</p>
-                <h3>🔧 My Approach</h3>
-                <ul>
-                    <li>Designed FastAPI backend with WebSocket support for real-time data streaming</li>
-                    <li>Implemented signal processing pipeline for EEG noise reduction</li>
-                    <li>Built ensemble ML model combining CNN and LSTM architectures</li>
-                    <li>Added comprehensive logging for model interpretability</li>
-                    <li>Containerized with Docker for easy deployment</li>
-                </ul>
+                <p>Real-time EEG processing system for cognitive state classification.</p>
                 <h3>🛠️ Tech Stack</h3>
                 <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">TensorFlow</span><span class="tag">WebSockets</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">MySQL</span></div>
-                <h3>📊 Key Outcomes</h3>
-                <ul>
-                    <li>✅ 85% classification accuracy on test data</li>
-                    <li>⚡ &lt;100ms latency for real-time predictions</li>
-                    <li>🏥 Successfully deployed in research lab pilot study</li>
-                    <li>📝 Published case study with university research team</li>
-                </ul>
-                <div class="links-flex" style="margin-top: 1rem;">
+                <div class="links-flex" style="margin-top:1rem">
                     <a href="https://github.com/HassanJavedMirza/Cognitive_ai" target="_blank" class="btn"><i class="fa-brands fa-github"></i> View Code</a>
                     <a href="https://cognitive-ai-rho.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
                 </div>
@@ -736,35 +467,16 @@
     </div>
 
     <!-- Content Modal -->
-    <div id="contentModal" class="modal" onclick="closeProjectModal('content', event)">
+    <div id="contentModal" class="modal" onclick="closeProjectModal('content',event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('content', event)">&times;</button>
-            <div class="project-placeholder" style="background: linear-gradient(135deg, #10b981, #059669);">
-                <i class="fa-solid fa-pen-fancy" style="font-size: 4rem; margin-right: 1rem;"></i> AI Content Generator
-            </div>
+            <button class="modal-close" onclick="closeProjectModal('content',event)">&times;</button>
+            <div class="project-placeholder" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-pen-fancy" style="font-size:4rem;margin-right:1rem"></i> AI Content Generator</div>
             <div class="modal-details">
                 <h2>✍️ AI Content Generator</h2>
-                <p style="color: #4b5563; margin-bottom: 1.5rem;">Full-stack SaaS platform leveraging LLMs for high-quality marketing and social media copy</p>
-                <h3>🎯 The Challenge</h3>
-                <p>Create a user-friendly platform that generates various types of content (blog posts, social media, ads) using AI, with user authentication, usage tracking, and payment processing.</p>
-                <h3>🔧 My Approach</h3>
-                <ul>
-                    <li>Built responsive frontend with Next.js and Tailwind CSS</li>
-                    <li>Integrated multiple AI models (GPT-4, Claude) for different content types</li>
-                    <li>Implemented user authentication with Clerk</li>
-                    <li>Added Stripe integration for subscription payments</li>
-                    <li>Created usage tracking and rate limiting system</li>
-                </ul>
+                <p>Full-stack SaaS platform leveraging LLMs for marketing and social media copy.</p>
                 <h3>🛠️ Tech Stack</h3>
-                <div class="tag-list"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Tailwind</span><span class="tag">Clerk</span><span class="tag">OpenAI API</span><span class="tag">Stripe</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
-                <h3>📊 Key Outcomes</h3>
-                <ul>
-                    <li>✅ 500+ active users in first month</li>
-                    <li>⚡ 3-second average generation time</li>
-                    <li>💰 $500 MRR within 2 months</li>
-                    <li>📱 4.8/5 user satisfaction rating</li>
-                </ul>
-                <div class="links-flex" style="margin-top: 1rem;">
+                <div class="tag-list"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Tailwind</span><span class="tag">Clerk</span><span class="tag">OpenAI API</span><span class="tag">Stripe</span></div>
+                <div class="links-flex" style="margin-top:1rem">
                     <a href="https://github.com/HassanJavedMirza/ai-content-generator" target="_blank" class="btn"><i class="fa-brands fa-github"></i> View Code</a>
                     <a href="https://ai-content-generator-phi-gilt.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
                 </div>
@@ -773,71 +485,36 @@
     </div>
 
     <!-- Audio Modal -->
-    <div id="audioModal" class="modal" onclick="closeProjectModal('audio', event)">
+    <div id="audioModal" class="modal" onclick="closeProjectModal('audio',event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('audio', event)">&times;</button>
-            <img src="n8n2.jpg" alt="Audio-to-Image Pipeline Workflow">
-            <img src="N8N.jpg" alt="Workflow image 2">
+            <button class="modal-close" onclick="closeProjectModal('audio',event)">&times;</button>
+            <img src="n8n2.jpg" alt="Audio Pipeline">
             <div class="modal-details">
                 <h2>🎵 Audio-to-Image Pipeline</h2>
-                <p style="color: #4b5563; margin-bottom: 1.5rem;">End-to-end generative AI workflow converting spoken audio to AI-generated images</p>
-                <h3>🎯 The Challenge</h3>
-                <p>Create an automated pipeline that takes voice input, transcribes it, and generates matching images - all without manual intervention.</p>
-                <h3>🔧 My Approach</h3>
-                <ul>
-                    <li>Orchestrated entire workflow using N8N for automation</li>
-                    <li>Integrated Groq Whisper API for accurate speech-to-text</li>
-                    <li>Added prompt engineering layer to optimize for image generation</li>
-                    <li>Used Hugging Face FLUX models for high-quality image output</li>
-                    <li>Built webhook receiver for async processing</li>
-                </ul>
+                <p>End-to-end generative AI workflow converting spoken audio to AI-generated images.</p>
                 <h3>🛠️ Tech Stack</h3>
-                <div class="tag-list"><span class="tag">N8N</span><span class="tag">Groq API</span><span class="tag">Whisper</span><span class="tag">Hugging Face</span><span class="tag">FLUX</span><span class="tag">Webhooks</span><span class="tag">Redis</span></div>
-                <h3>📊 Key Outcomes</h3>
-                <ul>
-                    <li>✅ 95% transcription accuracy</li>
-                    <li>⚡ 15-second end-to-end processing time</li>
-                    <li>🎨 4 image variations per audio input</li>
-                    <li>📈 10K+ successful generations</li>
-                </ul>
-                <div class="links-flex" style="margin-top: 1rem;">
+                <div class="tag-list"><span class="tag">N8N</span><span class="tag">Groq API</span><span class="tag">Whisper</span><span class="tag">Hugging Face</span><span class="tag">FLUX</span></div>
+                <div class="links-flex" style="margin-top:1rem">
                     <button onclick="openModal()" class="btn btn-primary"><i class="fa-regular fa-image"></i> View Flow</button>
-                    <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8" target="_blank" class="btn"><i class="fa-brands fa-linkedin"></i> LinkedIn Post</a>
+                    <a href="https://www.linkedin.com/posts/hassan-javed-116381247_n8n-api-automation-ugcPost-7386337281613225984-l3O8" target="_blank" class="btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Spam Modal -->
-    <div id="spamModal" class="modal" onclick="closeProjectModal('spam', event)">
+    <div id="spamModal" class="modal" onclick="closeProjectModal('spam',event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeProjectModal('spam', event)">&times;</button>
-            <div class="project-placeholder" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
-                <i class="fa-solid fa-envelope-circle-check" style="font-size: 4rem; margin-right: 1rem;"></i> Spam Email Detector
-            </div>
+            <button class="modal-close" onclick="closeProjectModal('spam',event)">&times;</button>
+            <div class="project-placeholder" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-envelope-circle-check" style="font-size:4rem;margin-right:1rem"></i> Spam Detector</div>
             <div class="modal-details">
                 <h2>📧 Spam Email Detector</h2>
-                <p style="color: #4b5563; margin-bottom: 1.5rem;">NLP-based classifier that identifies spam emails with high precision</p>
-                <h3>🎯 The Challenge</h3>
-                <p>Build an accurate spam detection system that can process emails in real-time and explain its decisions to users.</p>
-                <h3>🔧 My Approach</h3>
-                <ul>
-                    <li>Used TF-IDF vectorization for text feature extraction</li>
-                    <li>Implemented multiple ML models (Naive Bayes, SVM, Random Forest)</li>
-                    <li>Created ensemble voting classifier for better accuracy</li>
-                    <li>Built interactive Streamlit dashboard for testing</li>
-                    <li>Added explainable AI features showing why emails are flagged</li>
-                </ul>
+                <p>NLP-based classifier — 97% precision using TF-IDF vectorization.</p>
                 <h3>🛠️ Tech Stack</h3>
-                <div class="tag-list"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">NLTK</span><span class="tag">Streamlit</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Joblib</span></div>
+                <div class="tag-list"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">NLTK</span><span class="tag">Streamlit</span><span class="tag">Pandas</span></div>
                 <h3>📊 Key Outcomes</h3>
-                <ul>
-                    <li>✅ 97% precision on test dataset</li>
-                    <li>⚡ 50ms inference time per email</li>
-                    <li>📊 92% recall rate for spam detection</li>
-                    <li>🔍 Feature importance visualization included</li>
-                </ul>
-                <div class="links-flex" style="margin-top: 1rem;">
+                <ul><li>✅ 97% precision</li><li>⚡ 50ms inference time</li><li>📊 92% recall rate</li></ul>
+                <div class="links-flex" style="margin-top:1rem">
                     <a href="https://github.com/HassanJavedMirza/Spam-Email-Detector" target="_blank" class="btn"><i class="fa-brands fa-github"></i> View Code</a>
                     <a href="https://spam-email-detector-beta.vercel.app/" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
                 </div>
@@ -846,7 +523,6 @@
     </div>
 
     <script>
-        // HAMBURGER
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         hamburger.addEventListener('click', () => {
@@ -862,11 +538,7 @@
             });
         });
 
-        // MODALS
-        function openModal() {
-            document.getElementById('flowModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        function openModal() { document.getElementById('flowModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeModal(event) {
             if (event) event.stopPropagation();
             if (event.target.id === 'flowModal' || event.target.classList.contains('modal-close')) {
@@ -874,102 +546,61 @@
                 document.body.style.overflow = 'auto';
             }
         }
-        function openProjectModal(projectId) {
-            const modal = document.getElementById(projectId + 'Modal');
-            if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        }
-        function closeProjectModal(projectId, event) {
-            if (event) event.stopPropagation();
-            const modal = document.getElementById(projectId + 'Modal');
-            if (modal) { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
-        }
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
-                hamburger.classList.remove('open');
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            }
+        function openProjectModal(id) { const m = document.getElementById(id+'Modal'); if(m){m.classList.add('active');document.body.style.overflow='hidden';} }
+        function closeProjectModal(id,event) { if(event)event.stopPropagation(); const m=document.getElementById(id+'Modal'); if(m){m.classList.remove('active');document.body.style.overflow='auto';} }
+        document.addEventListener('keydown', e => {
+            if (e.key==='Escape') { document.querySelectorAll('.modal.active').forEach(m=>m.classList.remove('active')); hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow='auto'; }
         });
 
-        // AICALLER IMAGE SWITCHER
+        // AICALLER — 4 screenshots
         const acImgs = [
-            { src: 'AICaller1.jpg', label: '1 / 2 — Login Page · click to switch' },
-            { src: 'AICaller2.jpg', label: '2 / 2 — Invoices Dashboard · click to switch' }
+            { src: 'AICaller1.jpg',     label: '1 / 4 — Welcome Page · click to switch' },
+            { src: 'AICaller2.jpg',     label: '2 / 4 — Login Page · click to switch' },
+            { src: 'Vocetesting.jpg',   label: '3 / 4 — Voice Testing · click to switch' },
+            { src: 'realdashboard.jpg', label: '4 / 4 — Live Dashboard · click to switch' },
         ];
         let acIdx = 0;
         function switchAICallerImg() {
-            acIdx = acIdx === 0 ? 1 : 0;
+            acIdx = (acIdx + 1) % acImgs.length;
             const img = document.getElementById('aicallerModalImg');
             const lbl = document.getElementById('aicallerImgLabel');
             img.style.opacity = '0';
+            img.style.transition = 'opacity 0.18s ease';
             setTimeout(() => {
                 img.src = acImgs[acIdx].src;
                 lbl.textContent = acImgs[acIdx].label;
                 img.style.opacity = '1';
-                document.getElementById('ac-dot-0').classList.toggle('on', acIdx === 0);
-                document.getElementById('ac-dot-1').classList.toggle('on', acIdx === 1);
+                for (let i = 0; i < 4; i++) {
+                    const d = document.getElementById('ac-dot-'+i);
+                    if (d) d.classList.toggle('on', i === acIdx);
+                }
             }, 180);
-            img.style.transition = 'opacity 0.18s ease';
         }
 
-        // NAVBAR SCROLL
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
 
-        // CONTACT FORM
         const form = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
         const submitBtn = document.getElementById('submitBtn');
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async e => {
             e.preventDefault();
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
+            submitBtn.classList.add('loading'); submitBtn.disabled = true;
             try {
-                const response = await fetch(form.action, {
-                    method: 'POST', body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    formMessage.textContent = '✨ Message sent! I\'ll get back to you soon.';
-                    formMessage.className = 'form-message success';
-                    form.reset();
-                } else {
-                    formMessage.textContent = '❌ Something went wrong. Email me at hj1888371@gmail.com';
-                    formMessage.className = 'form-message error';
-                }
-            } catch {
-                formMessage.textContent = '❌ Network error. Email me at hj1888371@gmail.com';
-                formMessage.className = 'form-message error';
-            }
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-            setTimeout(() => {
-                formMessage.style.opacity = '0';
-                setTimeout(() => { formMessage.textContent = ''; formMessage.className = 'form-message'; formMessage.style.opacity = ''; }, 300);
-            }, 5000);
+                const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+                if (r.ok) { formMessage.textContent="✨ Message sent! I'll get back to you soon."; formMessage.className='form-message success'; form.reset(); }
+                else { formMessage.textContent='❌ Something went wrong. Email me at hj1888371@gmail.com'; formMessage.className='form-message error'; }
+            } catch { formMessage.textContent='❌ Network error. Email me at hj1888371@gmail.com'; formMessage.className='form-message error'; }
+            submitBtn.classList.remove('loading'); submitBtn.disabled=false;
+            setTimeout(()=>{ formMessage.style.opacity='0'; setTimeout(()=>{formMessage.textContent='';formMessage.className='form-message';formMessage.style.opacity='';},300); },5000);
         });
 
-        // SCROLL REVEAL
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; } });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.sketch-box, .project-card, .skill-category').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
+        document.querySelectorAll('.sketch-box,.project-card,.skill-category').forEach(el => {
+            el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all 0.6s cubic-bezier(0.4,0,0.2,1)'; observer.observe(el);
         });
-
-        document.querySelector('footer p').innerHTML =
-            `Hassan Javed &copy; ${new Date().getFullYear()}. Built with <i class="fa-regular fa-heart" style="color: var(--accent);"></i> and sketchy vibes.`;
+        document.querySelector('footer p').innerHTML=`Hassan Javed &copy; ${new Date().getFullYear()}. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.`;
     </script>
 </body>
 </html>
