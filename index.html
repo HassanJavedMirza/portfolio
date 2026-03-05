@@ -449,17 +449,17 @@
                     <button class="video-tab" id="vtab2" onclick="switchDemoVideo(2,event)">🚨 Demo 2 — Emergency</button>
                 </div>
                 <div id="vpanel1" class="video-panel active">
-                    <video class="demo-video" controls preload="metadata" id="vid1">
-                        <source src="Video1.mp4" type="video/mp4">
-                        <p style="color:#ef4444;padding:1rem">Video not found — place <strong>Video1.mp4</strong> in the same folder as index.html</p>
-                    </video>
+                    <iframe class="demo-video" style="height:260px;border:none"
+                        src="https://www.youtube.com/embed/mrVjMXd3j6A"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                     <p style="font-size:0.78rem;color:#94a3b8;margin-top:0.4rem">Multilingual routing demo — language detection, doctor / pharmacy / hospital routing</p>
                 </div>
                 <div id="vpanel2" class="video-panel">
-                    <video class="demo-video" controls preload="metadata" id="vid2">
-                        <source src="Video2.mp4" type="video/mp4">
-                        <p style="color:#ef4444;padding:1rem">Video not found — place <strong>Video2.mp4</strong> in the same folder as index.html</p>
-                    </video>
+                    <iframe class="demo-video" style="height:260px;border:none"
+                        src="https://www.youtube.com/embed/P2piZO1_uE8"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                     <p style="font-size:0.78rem;color:#94a3b8;margin-top:0.4rem">Emergency protocol — chest pain / accident detection → instant 144 / 112 routing</p>
                 </div>
 
@@ -696,15 +696,17 @@
             if (event) event.stopPropagation();
             const m = document.getElementById(id+'Modal');
             if (m) { m.classList.remove('active'); document.body.style.overflow = 'auto'; }
-            // Pause videos when doctomed modal closes
+            // Stop YouTube iframes when modal closes
             if (id === 'doctomed') {
-                document.querySelectorAll('.demo-video').forEach(v => v.pause());
+                document.querySelectorAll('#doctomedModal iframe').forEach(f => {
+                    f.src = f.src; // reload iframe = stops playback
+                });
             }
         }
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
-                document.querySelectorAll('.demo-video').forEach(v => v.pause());
+                document.querySelectorAll('#doctomedModal iframe').forEach(f => { f.src = f.src; });
                 hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
                 document.body.style.overflow = 'auto';
             }
@@ -716,7 +718,6 @@
             [1,2].forEach(n => {
                 document.getElementById('vpanel'+n).classList.toggle('active', n===num);
                 document.getElementById('vtab'+n).classList.toggle('active', n===num);
-                if (n !== num) document.getElementById('vid'+n).pause();
             });
         }
 
