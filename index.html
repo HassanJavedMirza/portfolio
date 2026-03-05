@@ -75,15 +75,36 @@
         .btn-primary:hover { background: var(--accent-light); box-shadow: 5px 5px 0px #000; }
         .btn:active { transform: translate(0,0); box-shadow: 2px 2px 0px var(--border); }
 
-        /* ── LIVE BADGE ── */
-        .live-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: #ecfdf5; border: 1.5px solid #10b981; color: #065f46; border-radius: 20px; font-size: 0.71rem; font-weight: 700; padding: 0.25rem 0.65rem; margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
-        .live-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; animation: livePulse 1.5s ease-in-out infinite; flex-shrink: 0; }
-        @keyframes livePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* ── BADGES ── */
+        .live-badge,.wip-badge,.gov-badge {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            border-radius: 20px; font-size: 0.71rem; font-weight: 700;
+            padding: 0.25rem 0.65rem; margin-bottom: 0.8rem;
+            font-family: 'Inter', sans-serif; letter-spacing: 0.04em; text-transform: uppercase;
+        }
+        .live-badge { background:#ecfdf5; border:1.5px solid #10b981; color:#065f46; }
+        .live-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 6px #10b981; animation:livePulse 1.5s ease-in-out infinite; flex-shrink:0; }
+        .wip-badge { background:#fff8e1; border:1.5px solid #f59e0b; color:#92400e; }
+        .wip-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#f59e0b; box-shadow:0 0 6px #f59e0b; animation:wipBlink 1.5s ease-in-out infinite; flex-shrink:0; }
+        .gov-badge { background:#eff6ff; border:1.5px solid #2563eb; color:#1e3a8a; }
+        .gov-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#2563eb; box-shadow:0 0 6px #2563eb; animation:livePulse 2s ease-in-out infinite; flex-shrink:0; }
+        @keyframes livePulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+        @keyframes wipBlink  { 0%,100%{opacity:1}50%{opacity:0.2} }
 
-        /* ── WIP BADGE ── */
-        .wip-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: #fff8e1; border: 1.5px solid #f59e0b; color: #92400e; border-radius: 20px; font-size: 0.71rem; font-weight: 700; padding: 0.25rem 0.65rem; margin-bottom: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
-        .wip-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 6px #f59e0b; animation: wipBlink 1.5s ease-in-out infinite; flex-shrink: 0; }
-        @keyframes wipBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+        /* ── CHECKLIST ── */
+        .checklist { list-style:none!important; margin-left:0!important; margin-bottom:1.25rem; }
+        .checklist li { display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:0.45rem; font-size:0.9rem; }
+        .ci { flex-shrink:0; font-size:0.85rem; margin-top:0.08rem; }
+        .ci-done { color:#10b981; } .ci-wait { color:#f59e0b; }
+
+        /* ── VIDEO TABS ── */
+        .video-tabs { display:flex; gap:0.5rem; margin-bottom:0.75rem; flex-wrap:wrap; }
+        .video-tab { padding:0.35rem 0.9rem; border:2px solid var(--border); border-radius:8px; background:#f5f5f5; cursor:pointer; font-family:'Architects Daughter',cursive; font-size:0.85rem; transition:var(--transition); }
+        .video-tab.active { background:var(--accent); color:white; border-color:var(--accent); }
+        .video-tab:hover:not(.active) { background:#e5e7eb; }
+        .video-panel { display:none; }
+        .video-panel.active { display:block; }
+        .demo-video { width:100%; border-radius:8px; border:2px solid var(--border-light); background:#000; max-height:260px; display:block; }
 
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .contact-list { list-style: none; }
@@ -103,6 +124,8 @@
         .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
         .social-links a { color: var(--text); font-size: 1.5rem; transition: var(--transition); }
         .social-links a:hover { color: var(--accent); transform: translateY(-3px) scale(1.1); }
+
+        /* ── MODALS ── */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); animation: fadeIn 0.3s ease-out; backdrop-filter: blur(5px); }
         .modal.active { display: flex; justify-content: center; align-items: center; }
         .modal-content { position: relative; max-width: 90%; max-height: 90vh; animation: slideIn 0.3s ease-out; background: white; border-radius: var(--sketchy-radius); border: 3px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
@@ -115,44 +138,41 @@
         .modal-details li { margin-bottom: 0.5rem; }
         .modal-close { position: absolute; top: 10px; right: 15px; color: var(--text); font-size: 2rem; font-weight: bold; cursor: pointer; background: white; border: 2px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 1; transition: var(--transition); z-index: 1001; }
         .modal-close:hover { background: var(--accent); color: white; transform: rotate(90deg) scale(1.1); }
-        .project-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, var(--accent-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-family: 'Architects Daughter', cursive; border-bottom: 2px solid var(--border-light); }
+        .project-placeholder { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-family: 'Architects Daughter', cursive; border-bottom: 2px solid var(--border-light); }
         .modal-img-wrap { position: relative; cursor: pointer; }
         .modal-img-wrap img { display: block; transition: opacity 0.2s ease; }
         .img-switcher-bar { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.58); color: white; font-size: 0.71rem; font-family: 'Inter', sans-serif; display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.85rem; }
         .img-dots { display: flex; gap: 0.4rem; align-items: center; }
         .img-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.2s; }
         .img-dot.on { background: white; }
-        .checklist { list-style: none !important; margin-left: 0 !important; margin-bottom: 1.25rem; }
-        .checklist li { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.45rem; font-size: 0.9rem; }
-        .ci { flex-shrink: 0; font-size: 0.85rem; margin-top: 0.08rem; }
-        .ci-done { color: #10b981; }
-        .ci-wait { color: #f59e0b; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideIn { from { transform: scale(0.9) translateY(-20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+        @keyframes slideIn { from{transform:scale(0.9) translateY(-20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1} }
         .personal-touch { margin-top: 1.5rem; padding: 1rem; background: #fafafa; border-radius: 10px; border-left: 4px solid var(--accent); }
         .personal-touch p { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .personal-touch i { color: var(--accent); }
         .btn.loading { position: relative; color: transparent; }
         .btn.loading::after { content: ''; position: absolute; width: 16px; height: 16px; top: 50%; left: 50%; margin-left: -8px; margin-top: -8px; border: 2px solid white; border-radius: 50%; border-top-color: transparent; animation: spinner 0.6s linear infinite; }
-        @keyframes spinner { to { transform: rotate(360deg); } }
+        @keyframes spinner { to{transform:rotate(360deg)} }
+
         @media (max-width: 768px) {
-            .hamburger { display: flex; } .nav-links { display: none; }
-            nav { padding: 1rem 1.2rem; margin-bottom: 2.5rem; }
-            .hero { flex-direction: row !important; align-items: flex-start; gap: 1rem; justify-content: space-between; }
-            .hero-content { flex: 1; text-align: left; } .hero-image { flex-shrink: 0; }
-            .hero h1 { font-size: 1.8rem; margin-top: 0; line-height: 1.2; } .hero p { font-size: 1rem; }
-            .hero-image img { width: 120px; height: 120px; }
-            .skills-grid { grid-template-columns: 1fr; } .projects-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .content-wrapper { padding: 0 1rem 1rem; }
-            .links-flex { flex-direction: column; width: 100%; } .links-flex .btn { width: 100%; justify-content: center; }
-            .modal-content { max-width: 95%; max-height: 95vh; } .modal-details { max-height: 60vh; padding: 1rem; }
-            .section-title { font-size: 1.8rem; } footer { padding: 1.5rem 1rem; } .social-links { gap: 1rem; }
+            .hamburger{display:flex} .nav-links{display:none}
+            nav{padding:1rem 1.2rem;margin-bottom:2.5rem}
+            .hero{flex-direction:row!important;align-items:flex-start;gap:1rem;justify-content:space-between}
+            .hero-content{flex:1;text-align:left} .hero-image{flex-shrink:0}
+            .hero h1{font-size:1.8rem;margin-top:0;line-height:1.2} .hero p{font-size:1rem}
+            .hero-image img{width:120px;height:120px}
+            .skills-grid{grid-template-columns:1fr} .projects-grid{grid-template-columns:1fr}
+            .contact-grid{grid-template-columns:1fr;gap:2rem}
+            .content-wrapper{padding:0 1rem 1rem}
+            .links-flex{flex-direction:column;width:100%} .links-flex .btn{width:100%;justify-content:center}
+            .modal-content{max-width:95%;max-height:95vh} .modal-details{max-height:60vh;padding:1rem}
+            .section-title{font-size:1.8rem} footer{padding:1.5rem 1rem} .social-links{gap:1rem}
+            .doctomed-hero-banner { flex-direction:column!important; }
         }
         @media (max-width: 480px) {
-            .hero { gap: 0.8rem; } .hero h1 { font-size: 1.5rem; } .hero p { font-size: 0.9rem; }
-            .hero-image img { width: 100px; height: 100px; } .project-card h3 { font-size: 1.3rem; }
-            .modal-content { max-width: 100%; border-radius: 10px; }
+            .hero{gap:0.8rem} .hero h1{font-size:1.5rem} .hero p{font-size:0.9rem}
+            .hero-image img{width:100px;height:100px} .project-card h3{font-size:1.3rem}
+            .modal-content{max-width:100%;border-radius:10px}
         }
     </style>
 </head>
@@ -182,13 +202,13 @@
             <div class="hero-content">
                 <h1 class="reveal">AI Software Engineer.</h1>
                 <p>I build intelligent systems that work. Focused on scalability, AI ethics, and writing code that feels like poetry.</p>
-                <div class="personal-touch sketch-box" style="margin-top: 2rem; padding: 1rem;">
+                <div class="personal-touch sketch-box" style="margin-top:2rem;padding:1rem">
                     <p><i class="fa-solid fa-mug-hot"></i> Coffee + Code = Magic</p>
                     <p><i class="fa-solid fa-brain"></i> Currently exploring: Multi-modal AI agents</p>
                     <p><i class="fa-solid fa-dumbbell"></i> When I'm not coding, I'm lifting or reading sci-fi</p>
                 </div>
             </div>
-            <div class="hero-image"><img src="MYPIC.jpeg" alt="Hassan Javed"></div>
+            <div class="hero-image"><img src="MYPIC.jpeg" alt="Hassan Javed" style="height:300px"></div>
         </section>
 
         <!-- ABOUT -->
@@ -228,32 +248,85 @@
             <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Featured Work</h2>
             <div class="projects-grid">
 
-                <!-- ══════════════════════════════
-                     AICALLER — LIVE & SHIPPED ✅
-                     ══════════════════════════════ -->
+                <!-- ══════════════════════════════════════
+                     DOCTOMED — GOVERNMENT PROJECT 🇨🇭
+                     Spans full width as flagship project
+                     ══════════════════════════════════════ -->
+                <div class="sketch-box project-card" onclick="openProjectModal('doctomed')"
+                    style="grid-column:span 2; border-color:#2563eb; border-width:3px; background:linear-gradient(135deg,#f8fbff,#ffffff);">
+                    <!-- Banner -->
+                    <div class="doctomed-hero-banner" style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.2rem;flex-wrap:wrap">
+                        <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:12px;padding:0.8rem 1.2rem;display:flex;align-items:center;gap:0.8rem;flex-shrink:0">
+                            <span style="font-size:2rem">🇨🇭</span>
+                            <div>
+                                <div style="color:#93c5fd;font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-family:'Inter',sans-serif">Government Project</div>
+                                <div style="color:white;font-family:'Architects Daughter',cursive;font-size:1.1rem;line-height:1.2">Switzerland · ORIS HUB™</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+                            <span class="gov-badge">🏥 National Healthcare AI</span>
+                            <span class="wip-badge">⚙️ Milestone 1 Complete</span>
+                        </div>
+                    </div>
+                    <h3><i class="fa-solid fa-phone-volume" style="color:#2563eb"></i> Doctomed — Multilingual Voice AI Healthcare Assistant</h3>
+                    <p>Production-grade real-time voice AI for Switzerland's national healthcare system. Speaks 5 languages, detects emergencies instantly, routes callers to the right service — every call saved to a government-grade database with full audit trail.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React + Vite</span>
+                        <span class="tag">Groq LLaMA 3.1</span><span class="tag">ElevenLabs TTS</span>
+                        <span class="tag">SQLAlchemy</span><span class="tag">SQLite/PostgreSQL</span>
+                        <span class="tag">WebSockets</span><span class="tag">EN/DE/FR/IT/AR</span>
+                    </div>
+                    <!-- Key stats -->
+                    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem">
+                        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:0.5rem 1rem;text-align:center">
+                            <div style="font-size:1.3rem;font-weight:800;color:#2563eb;font-family:'Architects Daughter',cursive">&lt;400ms</div>
+                            <div style="font-size:0.7rem;color:#64748b;letter-spacing:1px">FIRST WORD</div>
+                        </div>
+                        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;text-align:center">
+                            <div style="font-size:1.3rem;font-weight:800;color:#16a34a;font-family:'Architects Daughter',cursive">5 Lang</div>
+                            <div style="font-size:0.7rem;color:#64748b;letter-spacing:1px">MULTILINGUAL</div>
+                        </div>
+                        <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:0.5rem 1rem;text-align:center">
+                            <div style="font-size:1.3rem;font-weight:800;color:#d97706;font-family:'Architects Daughter',cursive">144/112</div>
+                            <div style="font-size:0.7rem;color:#64748b;letter-spacing:1px">EMERGENCY</div>
+                        </div>
+                        <div style="background:#fdf4ff;border:1px solid #e9d5ff;border-radius:8px;padding:0.5rem 1rem;text-align:center">
+                            <div style="font-size:1.3rem;font-weight:800;color:#9333ea;font-family:'Architects Daughter',cursive">DB ✓</div>
+                            <div style="font-size:0.7rem;color:#64748b;letter-spacing:1px">AUDIT TRAIL</div>
+                        </div>
+                    </div>
+                    <div class="links-flex" onclick="event.stopPropagation()">
+                        <button onclick="openProjectModal('doctomed')" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i> Watch Demo Videos
+                        </button>
+                        <button onclick="openProjectModal('doctomed')" class="btn">
+                            <i class="fa-regular fa-file-lines"></i> Full Case Study
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ══════════════════════════
+                     AICALLER ✅
+                     ══════════════════════════ -->
                 <div class="sketch-box project-card" onclick="openProjectModal('aicaller')">
                     <div class="live-badge">🚀 Live — Shipped</div>
                     <h3><i class="fa-solid fa-phone-volume"></i> AICaller</h3>
-                    <p>AI-powered debt recovery system that automatically calls overdue clients using a human-like voice agent, holds a full conversation, logs the transcript, and sends SMS if no answer — zero manual follow-up.</p>
+                    <p>AI-powered debt recovery system that automatically calls overdue clients using a human-like voice agent, holds a full conversation, logs the transcript, and sends SMS if no answer.</p>
                     <div class="tag-list">
                         <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">MySQL</span>
                         <span class="tag">APScheduler</span><span class="tag">Vapi.ai</span><span class="tag">JWT Auth</span>
-                        <span class="tag">Webhooks</span><span class="tag">Railway</span><span class="tag">Vercel</span>
+                        <span class="tag">Railway</span><span class="tag">Vercel</span>
                     </div>
                     <div class="links-flex" onclick="event.stopPropagation()">
-                        <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
-                        </a>
-                        <button onclick="openProjectModal('aicaller')" class="btn">
-                            <i class="fa-regular fa-file-lines"></i> Case Study
-                        </button>
+                        <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                        <button onclick="openProjectModal('aicaller')" class="btn"><i class="fa-regular fa-file-lines"></i> Case Study</button>
                     </div>
                 </div>
 
                 <!-- Wallet -->
                 <div class="sketch-box project-card" onclick="openProjectModal('wallet')">
                     <h3><i class="fa-solid fa-shield-halved"></i> Wallet Risk Analyzer</h3>
-                    <p>Production-grade AI system analyzing Ethereum wallets for fraud risk using ML + real-time blockchain data. Detects mixer patterns, bot behavior, and suspicious transactions.</p>
+                    <p>Production-grade AI system analyzing Ethereum wallets for fraud risk using ML + real-time blockchain data.</p>
                     <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Scikit-learn</span><span class="tag">Docker</span><span class="tag">Redis</span><span class="tag">Web3</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/wallet-risk-analyzer" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -265,7 +338,7 @@
                 <!-- Cognitive -->
                 <div class="sketch-box project-card" onclick="openProjectModal('cognitive')">
                     <h3><i class="fa-solid fa-brain"></i> Cognitive Load Assessment</h3>
-                    <p>Enterprise backend processing real-time EEG data to classify cognitive states. Built for scalability and responsible AI.</p>
+                    <p>Enterprise backend processing real-time EEG data to classify cognitive states.</p>
                     <div class="tag-list"><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">MySQL</span><span class="tag">Redis</span></div>
                     <div class="links-flex" onclick="event.stopPropagation()">
                         <a href="https://github.com/HassanJavedMirza/Cognitive_ai" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -350,9 +423,93 @@
         <p>Hassan Javed &copy; 2026. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.</p>
     </footer>
 
-    <!-- ══════════════════════════════════
-         AICALLER MODAL — 4 screenshots
-         ══════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════
+         DOCTOMED MODAL — Full case study + videos
+         ══════════════════════════════════════════ -->
+    <div id="doctomedModal" class="modal" onclick="if(event.target===this)closeProjectModal('doctomed',event)">
+        <div class="modal-content" style="max-width:720px" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeProjectModal('doctomed',event)">&times;</button>
+            <!-- Blue header banner -->
+            <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-shrink:0">
+                <span style="font-size:2.5rem">🇨🇭</span>
+                <div>
+                    <div style="color:#93c5fd;font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-family:'Inter',sans-serif">Switzerland · Government Project · ORIS HUB™</div>
+                    <div style="color:white;font-family:'Architects Daughter',cursive;font-size:1.5rem">Doctomed — National Voice AI</div>
+                </div>
+            </div>
+
+            <div class="modal-details">
+                <h2>🏥 Doctomed — Swiss Healthcare Voice AI</h2>
+                <p>A production-ready national multilingual voice AI assistant for Switzerland. Real-time voice interaction, intelligent healthcare routing, and emergency escalation — built for government-grade reliability with a full database audit trail.</p>
+
+                <!-- ── VIDEO DEMOS ── -->
+                <h3>🎬 Live Demo Videos</h3>
+                <div class="video-tabs">
+                    <button class="video-tab active" id="vtab1" onclick="switchDemoVideo(1,event)">📞 Demo 1 — Routing Call</button>
+                    <button class="video-tab" id="vtab2" onclick="switchDemoVideo(2,event)">🚨 Demo 2 — Emergency</button>
+                </div>
+                <div id="vpanel1" class="video-panel active">
+                    <video class="demo-video" controls preload="metadata" id="vid1">
+                        <source src="Video1.mp4" type="video/mp4">
+                        <p style="color:#ef4444;padding:1rem">Video not found — place <strong>Video1.mp4</strong> in the same folder as index.html</p>
+                    </video>
+                    <p style="font-size:0.78rem;color:#94a3b8;margin-top:0.4rem">Multilingual routing demo — language detection, doctor / pharmacy / hospital routing</p>
+                </div>
+                <div id="vpanel2" class="video-panel">
+                    <video class="demo-video" controls preload="metadata" id="vid2">
+                        <source src="Video2.mp4" type="video/mp4">
+                        <p style="color:#ef4444;padding:1rem">Video not found — place <strong>Video2.mp4</strong> in the same folder as index.html</p>
+                    </video>
+                    <p style="font-size:0.78rem;color:#94a3b8;margin-top:0.4rem">Emergency protocol — chest pain / accident detection → instant 144 / 112 routing</p>
+                </div>
+
+                <!-- ── MILESTONE PROGRESS ── -->
+                <h3 style="margin-top:1.2rem">✅ Milestone 1 — Delivered</h3>
+                <ul class="checklist">
+                    <li><span class="ci ci-done">✓</span> Real-time voice AI — English, German, French, Italian, Arabic</li>
+                    <li><span class="ci ci-done">✓</span> Auto language detection — responds in caller's own language</li>
+                    <li><span class="ci ci-done">✓</span> Emergency escalation — chest pain, accidents → 144 / 112 instantly</li>
+                    <li><span class="ci ci-done">✓</span> Healthcare routing — pharmacy, GP, hospital by city</li>
+                    <li><span class="ci ci-done">✓</span> Neural voice synthesis — ElevenLabs multilingual TTS</li>
+                    <li><span class="ci ci-done">✓</span> Government-grade DB — every call, message & emergency logged</li>
+                    <li><span class="ci ci-done">✓</span> Analytics API — call stats, transcripts, emergency audit trail</li>
+                    <li><span class="ci ci-done">✓</span> Pre-cached greeting — sub-400ms first word</li>
+                    <li><span class="ci ci-done">✓</span> Full call history with recordings and transcripts</li>
+                </ul>
+
+                <h3>⏳ Milestone 2 — Upcoming</h3>
+                <ul class="checklist">
+                    <li><span class="ci ci-wait">◷</span> OTP verification via SMS & Email</li>
+                    <li><span class="ci ci-wait">◷</span> Real Swiss hospital & pharmacy database</li>
+                    <li><span class="ci ci-wait">◷</span> Production deployment — live national URL</li>
+                    <li><span class="ci ci-wait">◷</span> Twilio — real phone call handling</li>
+                    <li><span class="ci ci-wait">◷</span> 1000+ concurrent calls infrastructure</li>
+                </ul>
+
+                <h3>🛠️ Tech Stack</h3>
+                <div class="tag-list">
+                    <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React + Vite</span>
+                    <span class="tag">Groq LLaMA 3.1</span><span class="tag">ElevenLabs TTS</span>
+                    <span class="tag">SQLAlchemy ORM</span><span class="tag">SQLite → PostgreSQL</span>
+                    <span class="tag">WebSockets</span><span class="tag">Web Speech API</span>
+                </div>
+
+                <h3>📊 Performance</h3>
+                <ul>
+                    <li>⚡ &lt;400ms greeting (pre-cached neural audio)</li>
+                    <li>🧠 ~80ms AI response (Groq 8b-instant)</li>
+                    <li>🔊 Neural voice across all 5 languages</li>
+                    <li>🗄️ Full audit trail — government-ready DB schema</li>
+                </ul>
+
+                <div style="margin-top:1rem;padding:0.8rem 1rem;background:#eff6ff;border-left:4px solid #2563eb;border-radius:6px;font-size:0.85rem;color:#1e3a8a">
+                    🇨🇭 Built for <strong>ORIS HUB™</strong> — Swiss National AI Infrastructure Project
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AICALLER MODAL -->
     <div id="aicallerModal" class="modal" onclick="closeProjectModal('aicaller',event)">
         <div class="modal-content" style="max-width:660px" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeProjectModal('aicaller',event)">&times;</button>
@@ -361,17 +518,14 @@
                 <div class="img-switcher-bar">
                     <span id="aicallerImgLabel">1 / 4 — Welcome Page &nbsp;·&nbsp; click to switch</span>
                     <div class="img-dots">
-                        <div class="img-dot on" id="ac-dot-0"></div>
-                        <div class="img-dot" id="ac-dot-1"></div>
-                        <div class="img-dot" id="ac-dot-2"></div>
-                        <div class="img-dot" id="ac-dot-3"></div>
+                        <div class="img-dot on" id="ac-dot-0"></div><div class="img-dot" id="ac-dot-1"></div>
+                        <div class="img-dot" id="ac-dot-2"></div><div class="img-dot" id="ac-dot-3"></div>
                     </div>
                 </div>
             </div>
             <div class="modal-details">
                 <h2>📞 AICaller — AI Voice Debt Recovery</h2>
-                <p>An end-to-end system that automatically calls overdue clients with a human-like AI voice agent, logs the full transcript, and sends an SMS fallback if no one answers. Fully deployed and live at <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" style="color:var(--accent)">ai-caller.vercel.app</a>.</p>
-
+                <p>An end-to-end system that automatically calls overdue clients with a human-like AI voice agent, logs the full transcript, and sends an SMS fallback if no one answers. Fully deployed at <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" style="color:var(--accent)">ai-caller.vercel.app</a>.</p>
                 <h3>✅ What's Built & Shipped</h3>
                 <ul class="checklist">
                     <li><span class="ci ci-done">✓</span> FastAPI backend — full CRUD for clients, invoices & call logs</li>
@@ -382,35 +536,21 @@
                     <li><span class="ci ci-done">✓</span> Vapi.ai integration — outbound AI call trigger fully coded</li>
                     <li><span class="ci ci-done">✓</span> Webhook endpoint — receives live transcript + AI summary post-call</li>
                     <li><span class="ci ci-done">✓</span> Admin dashboard — stats, invoices, call logs, settings panel</li>
-                    <li><span class="ci ci-done">✓</span> Voice call testing via Vapi sandbox</li>
                     <li><span class="ci ci-done">✓</span> Deployed — backend on Railway, frontend on Vercel</li>
                 </ul>
-
                 <h3>⏳ Pending (needs paid Vapi number ~$2/mo)</h3>
                 <ul class="checklist">
                     <li><span class="ci ci-wait">◷</span> Live outbound calls to real phone numbers</li>
                     <li><span class="ci ci-wait">◷</span> SMS fallback for missed calls</li>
                 </ul>
-
                 <h3>🛠️ Tech Stack</h3>
                 <div class="tag-list">
                     <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
                     <span class="tag">MySQL</span><span class="tag">JWT Auth</span><span class="tag">APScheduler</span>
                     <span class="tag">Vapi.ai</span><span class="tag">Webhooks</span><span class="tag">Railway</span><span class="tag">Vercel</span>
                 </div>
-
-                <h3>🎯 Key Technical Decisions</h3>
-                <ul>
-                    <li>APScheduler over Celery — zero broker, perfect for daily scheduling</li>
-                    <li>Vapi.ai over Twilio — built-in conversational AI voice</li>
-                    <li>bcrypt directly (no passlib) — avoids version conflicts on Railway</li>
-                    <li>allow_origin_regex for CORS — handles dynamic Vercel preview URLs</li>
-                </ul>
-
                 <div class="links-flex" style="margin-top:1.25rem">
-                    <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
-                    </a>
+                    <a href="https://ai-caller.vercel.app/welcome.html" target="_blank" class="btn btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
                 </div>
             </div>
         </div>
@@ -523,6 +663,7 @@
     </div>
 
     <script>
+        // ── Nav ──
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         hamburger.addEventListener('click', () => {
@@ -532,12 +673,13 @@
         });
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
                 document.body.style.overflow = 'auto';
             });
         });
+        window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50));
 
+        // ── Modals ──
         function openModal() { document.getElementById('flowModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeModal(event) {
             if (event) event.stopPropagation();
@@ -546,18 +688,44 @@
                 document.body.style.overflow = 'auto';
             }
         }
-        function openProjectModal(id) { const m = document.getElementById(id+'Modal'); if(m){m.classList.add('active');document.body.style.overflow='hidden';} }
-        function closeProjectModal(id,event) { if(event)event.stopPropagation(); const m=document.getElementById(id+'Modal'); if(m){m.classList.remove('active');document.body.style.overflow='auto';} }
+        function openProjectModal(id) {
+            const m = document.getElementById(id+'Modal');
+            if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        }
+        function closeProjectModal(id, event) {
+            if (event) event.stopPropagation();
+            const m = document.getElementById(id+'Modal');
+            if (m) { m.classList.remove('active'); document.body.style.overflow = 'auto'; }
+            // Pause videos when doctomed modal closes
+            if (id === 'doctomed') {
+                document.querySelectorAll('.demo-video').forEach(v => v.pause());
+            }
+        }
         document.addEventListener('keydown', e => {
-            if (e.key==='Escape') { document.querySelectorAll('.modal.active').forEach(m=>m.classList.remove('active')); hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow='auto'; }
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+                document.querySelectorAll('.demo-video').forEach(v => v.pause());
+                hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
         });
 
-        // AICALLER — 4 screenshots
+        // ── Doctomed video tab switcher ──
+        function switchDemoVideo(num, event) {
+            event.stopPropagation();
+            [1,2].forEach(n => {
+                document.getElementById('vpanel'+n).classList.toggle('active', n===num);
+                document.getElementById('vtab'+n).classList.toggle('active', n===num);
+                if (n !== num) document.getElementById('vid'+n).pause();
+            });
+        }
+
+        // ── AICaller image switcher ──
         const acImgs = [
-            { src: 'AICaller1.jpg',     label: '1 / 4 — Welcome Page · click to switch' },
-            { src: 'AICaller2.jpg',     label: '2 / 4 — Login Page · click to switch' },
-            { src: 'Vocetesting.jpg',   label: '3 / 4 — Voice Testing · click to switch' },
-            { src: 'realdashboard.jpg', label: '4 / 4 — Live Dashboard · click to switch' },
+            { src:'AICaller1.jpg',     label:'1 / 4 — Welcome Page · click to switch' },
+            { src:'AICaller2.jpg',     label:'2 / 4 — Login Page · click to switch' },
+            { src:'Vocetesting.jpg',   label:'3 / 4 — Voice Testing · click to switch' },
+            { src:'realdashboard.jpg', label:'4 / 4 — Live Dashboard · click to switch' },
         ];
         let acIdx = 0;
         function switchAICallerImg() {
@@ -565,11 +733,8 @@
             const img = document.getElementById('aicallerModalImg');
             const lbl = document.getElementById('aicallerImgLabel');
             img.style.opacity = '0';
-            img.style.transition = 'opacity 0.18s ease';
             setTimeout(() => {
-                img.src = acImgs[acIdx].src;
-                lbl.textContent = acImgs[acIdx].label;
-                img.style.opacity = '1';
+                img.src = acImgs[acIdx].src; lbl.textContent = acImgs[acIdx].label; img.style.opacity = '1';
                 for (let i = 0; i < 4; i++) {
                     const d = document.getElementById('ac-dot-'+i);
                     if (d) d.classList.toggle('on', i === acIdx);
@@ -577,8 +742,7 @@
             }, 180);
         }
 
-        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
-
+        // ── Contact form ──
         const form = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
         const submitBtn = document.getElementById('submitBtn');
@@ -590,15 +754,17 @@
                 if (r.ok) { formMessage.textContent="✨ Message sent! I'll get back to you soon."; formMessage.className='form-message success'; form.reset(); }
                 else { formMessage.textContent='❌ Something went wrong. Email me at hj1888371@gmail.com'; formMessage.className='form-message error'; }
             } catch { formMessage.textContent='❌ Network error. Email me at hj1888371@gmail.com'; formMessage.className='form-message error'; }
-            submitBtn.classList.remove('loading'); submitBtn.disabled=false;
-            setTimeout(()=>{ formMessage.style.opacity='0'; setTimeout(()=>{formMessage.textContent='';formMessage.className='form-message';formMessage.style.opacity='';},300); },5000);
+            submitBtn.classList.remove('loading'); submitBtn.disabled = false;
+            setTimeout(() => { formMessage.style.opacity='0'; setTimeout(()=>{formMessage.textContent='';formMessage.className='form-message';formMessage.style.opacity='';},300); }, 5000);
         });
 
+        // ── Scroll reveal ──
         const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; } });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)';} });
+        }, { threshold:0.1, rootMargin:'0px 0px -50px 0px' });
         document.querySelectorAll('.sketch-box,.project-card,.skill-category').forEach(el => {
-            el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all 0.6s cubic-bezier(0.4,0,0.2,1)'; observer.observe(el);
+            el.style.opacity=0; el.style.transform='translateY(20px)';
+            el.style.transition='all 0.6s cubic-bezier(0.4,0,0.2,1)'; observer.observe(el);
         });
         document.querySelector('footer p').innerHTML=`Hassan Javed &copy; ${new Date().getFullYear()}. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.`;
     </script>
