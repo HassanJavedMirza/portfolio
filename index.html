@@ -216,10 +216,10 @@
             <div class="hero-content">
                 <h1 class="reveal">AI Software Engineer.</h1>
                 
-                <p>I build intelligent systems that work. Focused on scalability, AI ethics, and writing code that feels like poetry.</p>
+                <p>I build intelligent systems that work. Focused on AI voice agents, scalable backends, and shipping things that actually run in production.</p>
                 <div class="personal-touch sketch-box" style="margin-top: 2rem; padding: 1rem;">
-                    <p><i class="fa-solid fa-mug-hot"></i> Coffee + Code = Magic</p>
-                    <p><i class="fa-solid fa-brain"></i> Currently exploring: Multi-modal AI agents</p>
+                    <p><i class="fa-solid fa-microphone-lines"></i> Building AI Voice Agents for real businesses</p>
+                    <p><i class="fa-solid fa-brain"></i> Currently exploring: Multi-agent voice systems</p>
                     <p><i class="fa-solid fa-dumbbell"></i> When I'm not coding, I'm lifting or reading sci-fi</p>
                 </div>
             </div>
@@ -230,9 +230,9 @@
         <section id="about" style="margin-bottom:5rem">
             <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> About</h2>
             <div class="sketch-box">
-                <p style="font-size:1.1rem;margin-bottom:1rem">Hey! I'm Hassan — an AI Software Engineer who believes in building technology that actually helps people.</p>
-                <p style="margin-bottom:1rem">Entry-level AI Software Engineer with a Bachelor's in Computer Science (AI specialization). Experienced in designing and deploying production-ready backend APIs using Python and FastAPI, building end-to-end ML pipelines, and applying Computer Vision with YOLO.</p>
-                <p>Passionate about solving real-world problems with responsible, scalable AI — actively seeking an entry-level role on an engineering team that ships intelligent products.</p>
+                <p style="font-size:1.1rem;margin-bottom:1rem">Hey! I'm Hassan — an AI Engineer who builds intelligent voice agents and backend systems that work in the real world.</p>
+                <p style="margin-bottom:1rem">AI Software Engineer with a Bachelor's in Computer Science (AI specialization). I specialise in building AI voice agents using Retell AI and GPT-4.1, production-ready backend APIs with Python and FastAPI, and end-to-end ML pipelines. I've shipped live agents for restaurants, healthcare, and education sectors.</p>
+                <p>Passionate about solving real-world problems with AI — actively seeking opportunities to build intelligent products on engineering teams that ship fast.</p>
                 <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
                     <span class="skill-tag"><i class="fa-regular fa-face-smile"></i> Open to work</span>
                     <span class="skill-tag"><i class="fa-regular fa-compass"></i> Based in Pakistan</span>
@@ -253,6 +253,7 @@
                     <div class="skill-category"><h3><i class="fa-solid fa-database"></i> Databases</h3><div class="skill-list"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQLite</span></div></div>
                     <div class="skill-category"><h3><i class="fa-solid fa-code"></i> Frontend</h3><div class="skill-list"><span class="skill-tag">React.js</span><span class="skill-tag">Next.js</span><span class="skill-tag">Tailwind</span><span class="skill-tag">HTML/CSS</span></div></div>
                     <div class="skill-category"><h3><i class="fa-solid fa-diagram-project"></i> Automation</h3><div class="skill-list"><span class="skill-tag">N8N</span><span class="skill-tag">Airflow</span><span class="skill-tag">Groq API</span><span class="skill-tag">Hugging Face</span></div></div>
+                    <div class="skill-category"><h3><i class="fa-solid fa-microphone-lines"></i> Voice AI</h3><div class="skill-list"><span class="skill-tag">Retell AI</span><span class="skill-tag">GPT-4.1</span><span class="skill-tag">Vapi.ai</span><span class="skill-tag">Twilio</span><span class="skill-tag">Supabase</span><span class="skill-tag">ElevenLabs</span></div></div>
                     <div class="skill-category"><h3><i class="fa-brands fa-docker"></i> DevOps</h3><div class="skill-list"><span class="skill-tag">Docker</span><span class="skill-tag">Docker Compose</span><span class="skill-tag">Git</span><span class="skill-tag">GitHub Actions</span></div></div>
                 </div>
             </div>
@@ -261,7 +262,13 @@
         <!-- PROJECTS -->
         <section id="projects" style="margin-bottom:5rem">
             <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Featured Work</h2>
-            <div class="projects-grid">
+
+            <!-- AI VOICE AGENTS SUBSECTION -->
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;margin-top:0.5rem">
+                <h3 style="font-family:'Architects Daughter',cursive;font-size:1.4rem;color:var(--accent);white-space:nowrap"><i class="fa-solid fa-microphone-lines"></i> AI Voice Agents</h3>
+                <div style="flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0,var(--accent) 6px,transparent 6px,transparent 12px);opacity:0.35;border-radius:2px"></div>
+            </div>
+            <div class="projects-grid" style="margin-bottom:3rem">
                 <!-- AICaller -->
                 <div class="sketch-box project-card" onclick="openProjectModal('aicaller')">
                     <div class="live-badge">🚀 Live — Shipped</div>
@@ -273,6 +280,44 @@
                         <button onclick="openProjectModal('aicaller')" class="btn"><i class="fa-regular fa-file-lines"></i> Case Study</button>
                     </div>
                 </div>
+                <!-- The Dome -->
+                <div class="sketch-box project-card" onclick="window.open('https://youtu.be/21Gbk4NAGP4','_blank')">
+                    <div class="live-badge">🚀 Live — Shipped</div>
+                    <h3><i class="fa-solid fa-utensils"></i> The Dome — Restaurant Agent</h3>
+                    <p>24/7 AI voice reservation agent for The Dome restaurant, Islamabad. Answers calls, collects booking details, checks real-time availability via Supabase RPC, and confirms reservations automatically — zero staff needed.</p>
+                    <div class="tag-list"><span class="tag">Retell AI</span><span class="tag">GPT-4.1</span><span class="tag">Supabase</span><span class="tag">Twilio</span><span class="tag">PostgreSQL</span></div>
+                    <div class="links-flex" onclick="event.stopPropagation()">
+                        <a href="https://youtu.be/21Gbk4NAGP4" target="_blank" class="btn btn-primary"><i class="fa-brands fa-youtube"></i> Watch Demo</a>
+                    </div>
+                </div>
+                <!-- HealthBridge -->
+                <div class="sketch-box project-card" onclick="window.open('https://youtu.be/L3E0LPEn4Oo','_blank')">
+                    <div class="live-badge">🚀 Live — Shipped</div>
+                    <h3><i class="fa-solid fa-heart-pulse"></i> HealthBridge — Medicare Agent</h3>
+                    <p>Outbound AI voice agent (Alex) that qualifies US seniors aged 60+ for affordable health insurance plans. Handles full sales flow — qualification, plan presentation, objection handling, and warm transfer to a human verifier.</p>
+                    <div class="tag-list"><span class="tag">Retell AI</span><span class="tag">GPT-4.1 Mini</span><span class="tag">Make.com</span><span class="tag">Multi-language</span><span class="tag">Post-call Analytics</span></div>
+                    <div class="links-flex" onclick="event.stopPropagation()">
+                        <a href="https://youtu.be/L3E0LPEn4Oo" target="_blank" class="btn btn-primary"><i class="fa-brands fa-youtube"></i> Watch Demo</a>
+                    </div>
+                </div>
+                <!-- Jumeirah College -->
+                <div class="sketch-box project-card" onclick="window.open('https://youtube.com/shorts/YcvrpQhrKJQ','_blank')">
+                    <div class="live-badge">🚀 Live — Shipped</div>
+                    <h3><i class="fa-solid fa-school"></i> Jumeirah College — Receptionist</h3>
+                    <p>AI voice receptionist for Jumeirah College Dubai (GEMS Education). Handles parent enquiries about admissions, fees, curriculum, tours, and transport — powered by a live knowledge base from the school website, zero hallucinations.</p>
+                    <div class="tag-list"><span class="tag">Retell AI</span><span class="tag">GPT-4.1 Mini</span><span class="tag">Knowledge Base</span><span class="tag">ElevenLabs</span><span class="tag">Make.com</span></div>
+                    <div class="links-flex" onclick="event.stopPropagation()">
+                        <a href="https://youtube.com/shorts/YcvrpQhrKJQ" target="_blank" class="btn btn-primary"><i class="fa-brands fa-youtube"></i> Watch Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHER PROJECTS SUBSECTION -->
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+                <h3 style="font-family:'Architects Daughter',cursive;font-size:1.4rem;color:var(--accent);white-space:nowrap"><i class="fa-solid fa-code"></i> Other Projects</h3>
+                <div style="flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0,var(--accent) 6px,transparent 6px,transparent 12px);opacity:0.35;border-radius:2px"></div>
+            </div>
+            <div class="projects-grid">
                 <!-- Wallet -->
                 <div class="sketch-box project-card" onclick="openProjectModal('wallet')">
                     <h3><i class="fa-solid fa-shield-halved"></i> Wallet Risk Analyzer</h3>
@@ -333,7 +378,7 @@
                 <div class="sketch-box" style="margin-bottom:0">
                     <h3 style="margin-bottom:1.5rem;font-size:1.3rem; text-align:center;">Let's connect</h3>
                     <ul class="contact-list">
-                        <li><a href="mailto:hj1888371@gmail.com" target="_blank" aria-label="Email"><i class="fa-regular fa-envelope"></i><span>hj1888371@gmail.com</span></a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#b2dad8838a8a8a818583f2d5dfd3dbde9cd1dddf" target="_blank" aria-label="Email"><i class="fa-regular fa-envelope"></i><span><span class="__cf_email__" data-cfemail="caa2a0fbf2f2f2f9fdfb8aada7aba3a6e4a9a5a7">[email&#160;protected]</span></span></a></li>
                         <!-- <li><a href="tel:+923155077034" aria-label="Phone"><i class="fa-regular fa-phone"></i><span>+92 3155077034</span></a></li> -->
                         <li><a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i><span>linkedin.com/in/hassan-javed</span></a></li>
                         <li><a href="https://github.com/HassanJavedMirza" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i><span>github.com/HassanJavedMirza</span></a></li>
@@ -357,7 +402,7 @@
         <div class="social-links">
             <a href="https://github.com/HassanJavedMirza" target="_blank"><i class="fa-brands fa-github"></i></a>
             <a href="https://linkedin.com/in/hassan-javed-116381247" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:hj1888371@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="/cdn-cgi/l/email-protection#d8b0b2e9e0e0e0ebefe998bfb5b9b1b4f6bbb7b5"><i class="fa-regular fa-envelope"></i></a>
         </div>
         <p>Hassan Javed &copy; 2026. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.</p>
     </footer>
@@ -376,7 +421,7 @@
     <div id="flowModal" class="modal" onclick="closeModal(event)"><div class="modal-content"><button class="modal-close" onclick="closeModal(event)">&times;</button><img src="n8n2.jpg" alt="flow"><div class="modal-details"><h2>Audio pipeline</h2></div></div></div>
     <!-- other modals would be identical but omitted for brevity -->
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // mobile menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -442,8 +487,6 @@
                 mobileMenu.classList.remove('open');
             }
         });
-
-        document.querySelector('footer p').innerHTML = `Hassan Javed &copy; ${new Date().getFullYear()}. Built with <i class="fa-regular fa-heart" style="color:var(--accent)"></i> and sketchy vibes.`;
     </script>
 </body>
 </html>
